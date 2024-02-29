@@ -3,7 +3,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class ExampleImplementation implements Example {
+public class ExampleImplementation implements Example {  // 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
 
     @Override
     public <T extends Comparable<? super T>> T max(Collection<? extends T> col) {
