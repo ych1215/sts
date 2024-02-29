@@ -24,7 +24,7 @@ public class ExampleImplementation implements Example {  // ghp_MLRw3vzgoZ6vZwbd
         return maxElement; // 여기머즈한다
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { ///ㄴㄴㄴㄴ
         // Example usage
         ExampleImplementation exampleImplementation = new ExampleImplementation();
 
