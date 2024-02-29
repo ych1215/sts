@@ -1,0 +1,21 @@
+<SCRIPT LANGUAGE="JavaScript">
+    
+    // 이벤트 리스너: 부모가 보낸 메시지 수신
+    window.addEventListener('message', function (event) {
+		
+        // origin을 검증하여 신뢰할 수 있는 소스에서만 메시지를 수락
+        if (event.origin !== window.location.origin) return;
+
+        // 수신한 메시지를 사용하여 부모 페이지의 함수 호출
+        alert("부모가보낸메시지는::"+event.data);
+    });
+    
+    // 부모에게 메시지 보내기 
+    function sendMessageToIframe() {
+        var iframe = document.getElementById('iframe1');
+         window.parent.postMessage("알겟당2", '*');
+    }
+    
+</SCRIPT>
+
+<button onclick="sendMessageToIframe()">아이프레임에서 부모로 post메시지 전송</button>
