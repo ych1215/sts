@@ -10,7 +10,7 @@ public class MypApplication {
 		SpringApplication.run(MypApplication.class, args);
 	}
 	
-	// SqlSessionFactory 생성시application.properties 파일에 해도 되고 여기에 해도 된다.
+	// SqlSessionFactory 생성시application.properties 파일에 해도 되고 여기에 해도 된다.1111
 	//@Bean
 	//public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
 	//	SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
