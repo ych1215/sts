@@ -6,7 +6,7 @@ import java.util.List;
 public class ExampleImplementation implements Example {  // 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
 
     @Override
-    public <T extends Comparable<? super T>> T max(Collection<? extends T> col) {  // sts1 브런치
+    public <T extends Comparable<? super T>> T max(Collection<? extends T> col) {  // sts1 브런치33
         if (col.isEmpty()) {
             throw new IllegalArgumentException("Collection is empty");
         }
