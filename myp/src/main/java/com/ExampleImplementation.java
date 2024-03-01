@@ -24,7 +24,7 @@ public class ExampleImplementation implements Example {  // ghp_MLRw3vzgoZ6vZwbd
         return maxElement; // 여기머즈한다
     }
 
-    public static void main(String[] args) {//22222222
+    public static void main(String[] args) {
         // Example usage
         ExampleImplementation exampleImplementation = new ExampleImplementation();
 
@@ -43,4 +43,5 @@ public class ExampleImplementation implements Example {  // ghp_MLRw3vzgoZ6vZwbd
     // 머즈 헌당.
     // mst 에 머지 한다.
     // mst에 ...
+    // mst에만 머즈한다.
 }
