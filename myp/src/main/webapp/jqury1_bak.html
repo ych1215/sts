@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeContainsPrefix demo</title>
+  <style>
+  a {
+    display: inline-block;
+  }
+  </style>
+  
+  <script src="https://code.jquery.com/jquery-3.7.0.jsxxxxx"></script>
+  
+  <script src="jquery3.0.js"></script>
+  
+</head>
+<body>
+ 
+<a href="http://localhost:8089/jqury1.html" hreflang="en">Some text</a>
+<a href="example.html" hreflang="en-UK">Some other text</a>
+<a href="example.html" hreflang="english">will not be outlined</a>
+ 
+<script>
+$( "a[hreflang|='en']" ).css( "border", "3px dotted green" );
+</script>
+ 
+</body>
+</html>

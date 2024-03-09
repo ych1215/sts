@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.login.dao.LoginMapper;
 import com.test.dao.TestMapper;
 
 @Service
