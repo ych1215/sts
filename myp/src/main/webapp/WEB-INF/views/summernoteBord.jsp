@@ -29,6 +29,14 @@
         
     }
     
+    	// 툴바 없애기 
+       function test3() { 
+       $('#summernote').summernote('destroy');
+
+        
+    }
+    
+   
     
     
 </script>
@@ -37,23 +45,37 @@
 <body>
 
   <div id="summernote"><p>Hello Summernote</p></div>
+   <div id="summernote2"><p>Hello Summernote2</p></div>
   
   <script>
     $(document).ready(function() {
         $('#summernote').summernote(
         
         {
-		  airMode: false
+		  airMode: false // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
 		}
         
         );
+        
+        
+          $('#summernote2').summernote(
+        
+        {
+		  airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
+		   lang: 'ko-KR' // default: 'en-US' 
+		}
+        
+        );
+        
+        
     });
   </script>
   
   
   
-   <input name="btnSave"  type="BUTTON" value="썸머노트읽기1" onClick="test()">
-   <input name="btnSave"  type="BUTTON" value="썸머노트쓰기2" onClick="test2()">
+   <input name="btnSave"  type="BUTTON" value="썸머노트읽기11" onClick="test()">
+   <input name="btnSave"  type="BUTTON" value="썸머노트쓰기22" onClick="test2()">
+    <input name="btnSave"  type="BUTTON" value="툴바없애기" onClick="test3()">
    
    
 </body>
