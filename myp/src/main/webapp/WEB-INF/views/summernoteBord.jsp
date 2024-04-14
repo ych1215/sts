@@ -12,6 +12,7 @@
   <script src="summernote-0.8.18-dist/bootstrap3.4.1.min.js"></script>
   <link href="summernote-0.8.18-dist/summernote.min.css" rel="stylesheet">
   <script src="summernote-0.8.18-dist/summernote.min.js"></script>
+  <script src="summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
   
   <!--
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +66,12 @@
         $('#summernote').summernote(
         
         {
-		  airMode: false // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
+		  airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
+		   lang: 'ko-KR' , // default: 'en-US' 
+		    height: 100,                 // set editor height
+			  minHeight: null,             // set minimum height of editor
+			  maxHeight: null,             // set maximum height of editor
+			  focus: true                  // set focus to editable area after initializing summe
 		}
         
         );
@@ -75,7 +81,11 @@
         
         {
 		  airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
-		   lang: 'ko-KR' // default: 'en-US' 
+		   lang: 'ko-KR', // default: 'en-US' 
+		    height: 200,                 // set editor height
+			  minHeight: null,             // set minimum height of editor
+			  maxHeight: null,             // set maximum height of editor
+			  focus: true                  // set focus to editable area after initializing summe
 		}
         
         );
