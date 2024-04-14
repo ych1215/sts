@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bord.dao.BorderMapper">
+
+
+	<select id="selectBordList" parameterType="Map" resultType="Map">
+		SELECT BORD as bord
+		FROM YCH_LOGIN_INFO
+		WHERE seq = 2
+	</select>
+	
+	
+	
+	<update id="saveSummernoteBord" parameterType="Map">
+
+		INSERT INTO YCH_LOGIN_INFO
+		(
+		SEQ,
+		BORD ,
+		CREATE_DT
+		)
+		VALUES
+		(
+		  (SELECT NVL(MAX(SEQ) + 1 , 1) FROM YCH_LOGIN_INFO  ),
+		#{BORD} ,
+		sysdate 
+		)
+
+	</update>
+
+
+</mapper>
+

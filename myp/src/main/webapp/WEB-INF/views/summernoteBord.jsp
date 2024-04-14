@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
+<%
+String alllist = (String)request.getAttribute("Alllist");
+//out.println(alllist);
+%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +44,7 @@
     	// 쓰기 
        function test2() {
        
-       var markupStr = 'hello world 유처로11';
+       var markupStr = '<p><b>Hello Summernote</b></p><blockquote><b>THAJDLEK</b></blockquote><blockquote><b>GGG</b></blockquote><p><b><br></b></p>';
 		$('#summernote').summernote('code', markupStr);
 
         
@@ -49,6 +56,22 @@
 
         
     }
+
+
+    // 툴바 없애기 
+    function save() { 
+      var frm = document.form;
+      frm.action = 'saveSummernoteBord';
+      frm.method  = "post";
+
+      var markupStr = $('#summernote').summernote('code');
+
+      frm.BORD.value = markupStr;
+
+      debugger;
+
+      frm.submit();
+    }
     
    
     
@@ -57,6 +80,7 @@
 
 
 <body>
+  <form id="form" name="form">
 
   <div id="summernote"><p>Hello Summernote</p></div>
    <div id="summernote2"><p>Hello Summernote2</p></div>
@@ -68,7 +92,7 @@
         {
 		  airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
 		   lang: 'ko-KR' , // default: 'en-US' 
-		    height: 100,                 // set editor height
+		    height: null,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게..
 			  minHeight: null,             // set minimum height of editor
 			  maxHeight: null,             // set maximum height of editor
 			  focus: true                  // set focus to editable area after initializing summe
@@ -80,15 +104,16 @@
           $('#summernote2').summernote(
         
         {
-		  airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
+		    airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
 		   lang: 'ko-KR', // default: 'en-US' 
-		    height: 200,                 // set editor height
+		    height: 100,                 // set editor height
 			  minHeight: null,             // set minimum height of editor
 			  maxHeight: null,             // set maximum height of editor
 			  focus: true                  // set focus to editable area after initializing summe
-		}
-        
+		}  
         );
+        
+        $('#summernote').summernote('code', '<%=alllist%>');
         
         
     });
@@ -98,8 +123,12 @@
   
    <input name="btnSave"  type="BUTTON" value="썸머노트읽기11" onClick="test()">
    <input name="btnSave"  type="BUTTON" value="썸머노트쓰기22" onClick="test2()">
-    <input name="btnSave"  type="BUTTON" value="툴바없애기2" onClick="test3()">
+   <input name="btnSave"  type="BUTTON" value="툴바없애기2" onClick="test3()">
+   <input name="btnSave"  type="BUTTON" value="저장" onClick="save()">
+
+   <input name="BORD" id="BORD" type="input" value="" onClick="save()">
    
-   
+  </form>
+
 </body>
 </html>
