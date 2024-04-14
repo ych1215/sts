@@ -15,12 +15,15 @@
 
 
 <script>
+
+	// 읽어 오기 
     function test() {
         var markupStr = $('#summernote').summernote('code');
          alert(markupStr);
         
     }
     
+    	// 쓰기 
        function test2() {
        
        var markupStr = 'hello world 유처로11';
