@@ -4,13 +4,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8">﻿
   <title>Summernote</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="summernote-0.8.18-dist/bootstrap3.4.1.min.css" rel="stylesheet">
+  <script src="summernote-0.8.18-dist/jquery-3.5.1.min.js"></script>
+  <script src="summernote-0.8.18-dist/bootstrap3.4.1.min.js"></script>
+  <link href="summernote-0.8.18-dist/summernote.min.css" rel="stylesheet">
+  <script src="summernote-0.8.18-dist/summernote.min.js"></script>
+  
+  <!--
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  -->
+  
 </head>
 
 
@@ -78,7 +88,7 @@
   
    <input name="btnSave"  type="BUTTON" value="썸머노트읽기11" onClick="test()">
    <input name="btnSave"  type="BUTTON" value="썸머노트쓰기22" onClick="test2()">
-    <input name="btnSave"  type="BUTTON" value="툴바없애기" onClick="test3()">
+    <input name="btnSave"  type="BUTTON" value="툴바없애기2" onClick="test3()">
    
    
 </body>
