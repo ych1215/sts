@@ -28,7 +28,13 @@ public class FileUploadController {
     	 for (MultipartFile file : photo) {
     	      // 파일 저장
     	      String filename = file.getOriginalFilename();
-    	      File saveFile = new File(contextRootPath + filename);
+    	    //  File saveFile = new File(contextRootPath + filename);   // getServletContext 경로 
+    	      File saveFile = new File("C:\\YCHapp_new\\file_up\\" + filename);  // 지정한 경로 
+    	      
+    	  	System.out.println ("saveFile::"+contextRootPath + filename);  // getServletContext 경로 
+    	  	System.out.println ("saveFile2::"+"C:\\YCHapp_new\\file_up\\" + filename); // 지정한 경로 
+    	  	
+    	  	
     	      file.transferTo(saveFile);
 
     	      // DB에 저장

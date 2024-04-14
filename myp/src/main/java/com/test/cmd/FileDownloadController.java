@@ -20,9 +20,15 @@ public class FileDownloadController {
     @RequestMapping(value = "/download", method = RequestMethod.POST)
     public void uploadFile(HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
 
-        String filePath = request.getSession().getServletContext().getRealPath("/") + File.separator + request.getParameter("fileName");
+       // String filePath = request.getSession().getServletContext().getRealPath("/") + File.separator + request.getParameter("fileName");
+    	
+    	 String filePath = "C:\\YCHapp_new\\file_up" + File.separator + request.getParameter("fileName"); // 지정된 경로에서 파일 다운 
 
         try {
+        	
+        	System.out.println("filePath::" +  filePath);
+        	
+        	
             File file = new File(filePath);
 
             if (file.exists()) {
