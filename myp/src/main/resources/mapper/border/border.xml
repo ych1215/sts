@@ -7,7 +7,7 @@
 	<select id="selectBordList" parameterType="Map" resultType="Map">
 		SELECT BORD as bord
 		FROM YCH_LOGIN_INFO
-		WHERE seq = 2
+		WHERE seq = 99999
 	</select>
 	
 	
