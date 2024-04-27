@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/jquery3.7.1.js"></script>
+
+<style type="text/css">
+</style>  
+<script>
+
+    var cnt = 0;
+
+    $(document).ready( function() {
+       
+
+        debugger;
+
+        var a  = jQuery( "input" );
+        var a1 = $( "input" ); // 위와 동일하고 jquery 객체가 리턴 된다
+
+        var c = $('input')[0];  //form 의 1번째 input 돔오브잭트 를 가르긴다.
+
+        var b = $('<input>')[0]; // 이건 c와 같을 거라고 착각할수 있는대 그냥 'input' 태그 이다. b.vlaue해도 '' 이다.
+
+        
+
+
+
+    });
+
+
+    function test() {
+        alert("hi");
+    }
+</script>
+</head>
+	<body>
+
+<table id="z"></table>
+
+		<form name="frm">
+
+            <input name="test" id="test"  type="input" value="aa" >
+            <input name="test" id="test"  type="input" value="bb" >
+
+        <input name="btnSave"  type="BUTTON" value="클릭" onClick="test()">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jquery.dao.ApprMapper">
+
+	<select id="selectApprList" parameterType="Map" resultType="Map">
+		SELECT 'test' as test
+		FROM dual
+	</select>
+
+	<select id="selectReportList" parameterType="Map" resultType="Map">
+		SELECT 'test1' as test
+		FROM dual
+		UNION  ALL
+		SELECT 'test2' as test
+		FROM dual
+	</select>
+	
+	<select id="schApprUser" parameterType="Map" resultType="Map">
+		SELECT #{shcNm} as USER_NAME
+		FROM dual
+	</select>
+	
+	
+	
+	
+
+</mapper>
+
