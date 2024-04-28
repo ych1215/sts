@@ -286,7 +286,7 @@
             <input name="btnSave" type="BUTTON" value="from json변환" onClick="fnTriJson()">
             <input name="btnSave" type="BUTTON" value="from json변환2" onClick="fnTriJson2()">
             <input name="btnSave" type="BUTTON" value="from json변환3" onClick="fnTriJson3()"> <br>
-            <input name="btnSave" type="BUTTON" value="jquery테스트" onClick="fnTest1()">
+            <input name="btnSave" type="BUTTON" value="jquery개념" onClick="fnTest1()">
 
 
             <br><br><br>
