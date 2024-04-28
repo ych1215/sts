@@ -238,6 +238,39 @@
         
             }
 
+            // jquery 원리 
+            function fnTest1() {
+
+                debugger;
+                var a = $("#apprList");
+
+                /*
+
+                콘솔에 a를 찍으면 jquery 배열 객체가 나온다 <--- 이게 핵심, 배열 갯수는 그 안에 태그가 여러개면  0,1,2,3.. 나온다. length 가 보임.
+                그리고 0번째 배열에 있는것을 열어서 보이는것은 일반 js인 돔오브잭트인 속성이 보인다. 이건 jqury 가 아닌 일반 돔이다. <--- 이게 핵심
+                jquery 의 함수를 보려면 프로토타입을 열어서 보면 jquery함수가 보인다. <--- 이게 핵심
+                */
+
+                var b = $("#apprList > .psrsonList");
+                var c = $("#apprList > .psrsonList > #tt");
+                
+                var d = $("#apprList > .psrsonList > .comboAppr"); // 콤보박스 
+                //alert( d[0].value ) ; // [0] 하면 돔오브젝트이름로 일반 자바스크립처럼 할수 잇다.
+                //alert( d.val() ) ; // jquery 함수를 이용한것이다.
+                
+                var e = $("#apprList > .psrsonList > span"); // span                 
+                alert(e[0].innerText); // 세종   // [0] 하면 돔오브젝트이름로 일반 자바스크립처럼 할수 잇다.
+                alert(e.html());       // 세종   // jquery 함수를 이용한것이다.
+
+
+                //alert(  $("span").htm() ); // 바로 찾아도 됨.
+                //$("span")[0].in // vs코드 툴에서 어시스트 보면 js인 둠 함수가 보인다.
+                //$("span").ht   // vs코드에서 보면 jqueyr 함수가 보인다.
+
+            
+            }
+            
+
             
 
         </script>
@@ -252,7 +285,9 @@
             <input name="btnSave" type="BUTTON" value="아이프레임값" onClick="fnIfrm()">
             <input name="btnSave" type="BUTTON" value="from json변환" onClick="fnTriJson()">
             <input name="btnSave" type="BUTTON" value="from json변환2" onClick="fnTriJson2()">
-            <input name="btnSave" type="BUTTON" value="from json변환3" onClick="fnTriJson3()">
+            <input name="btnSave" type="BUTTON" value="from json변환3" onClick="fnTriJson3()"> <br>
+            <input name="btnSave" type="BUTTON" value="jquery테스트" onClick="fnTest1()">
+
 
             <br><br><br>
 
@@ -272,6 +307,7 @@
                     </SELECT>
                     <span>세종</span>
                     <input name="del" type="BUTTON" value="삭제">
+                    <input name="tt" id="tt" type="input" value="zrz">
 
                 </div>
                 

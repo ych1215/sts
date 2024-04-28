@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+
+    <script src="js/jquery3.7.1.js"></script>
+
+    <style type="text/css">
+        .list {
+                width: 800px;
+                padding: 10px;
+                height: 100px;
+                border: 1px solid #298049;
+                overflow: auto;
+            }
+    </style>
+    <script>
+
+        function fnTest1() {
+
+            alert ( $("#test1").val() ); // jquery 함수로 접근 
+            alert ( $("#test1")[0].value ); // 돔으로 받아 일반 js로 접급 
+            //$("#test1").val("333"); // 값셋팅
+
+            //  <input name="test1" id="test1" type="input" value="aa">
+
+            debugger;
+            var z = $("#test1");
+
+            /* 핵심정리 
+            z를 콜솔에 찍오보면 알수 있듯이  jquery 객채 배열로 리턴한다.   
+            0번째 배열은 일반 js의 돔 오브젝트 이다, 그러므로 일반 js와 같다.  그러므로 z[0]로 변수에 받아서 일반함수처럼 사용하면 된다. alert (z[0].value ) //  aa
+            jquery 함수를 보려면 프로토타입를 열어보면 함수가 나온다.   val() 이라는 jquery 함수도 보인다. jquery 함수를 사용할때는 z.val() // aa
+             */
+
+
+        }
+
+        function fnTest2() {
+
+            debugger;
+            alert ( $('input:radio[name="ride1"]:checked').val() ); // 값 꺼내기 
+            //$('input:radio[name="ride1"]:input[value="3"]').prop("checked", true); // 값 셋팅하기
+        }
+
+        function fnTest3() {
+          //alert(  $(".comboAppr").val() ); // 클래스로 찾기 
+          //alert ( $("select option:selected").val() ); // 네임으로  찾기 
+          alert ( $("#comboAppr").val()); // id로 접근 
+
+          //$(".comboAppr").val("3"); // 클래스로  접근가능 , 값셋팅
+          //$("#comboAppr").val("2"); // id로만 접근가능 , 값셋팅
+        }
+
+        function fnTest4() {
+          alert ( $("#textarea2").val()); // id로 접근 , nmae으로는 안됨;;;
+         // $("#textarea2").val("test"); // 값셋팅
+        }
+
+        
+        function fnTest5 () {
+
+            var len = $("input[name='cb']:checked").length;
+            if(len > 1){ //개수를 체크하고 2개부터는 each함수를 통해 각각 가져온다.
+                $("input[name='cb']:checked").each(function(e){                  
+                    alert($(this).val());
+                })
+            } else { // 1개일때 
+                alert  ( $("input[name='cb']:checked").val() );
+            }
+
+           // $("input[name='cb'][value='JAVA2']").prop("checked", true); // 값 셋팅
+
+
+            /*  //전체 해제
+            $("input[name='cb']").each(function(e){
+                $(this).prop("checked", false); //false는 해제된다.
+            })
+            */
+
+             /* //전체선택
+            $("input[name='cb']").each(function(e){
+                $(this).prop("checked", true);
+            })
+            */
+                    
+
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" id="frm">
+
+        <div class="list">
+            <input name="btntest1" type="BUTTON" value="input박스 값 읽기 " onClick="fnTest1()"> <br>
+            <input name="test1" id="test1" type="input" value="aa">
+        </div>
+
+         <div class="list">
+            <input name="btntest1" type="BUTTON" value="라디오 값 읽기 " onClick="fnTest2()"> <br>
+            <td>
+                <input type="radio" name="ride1" id="a"  value="1" "checked=true" /> <label for="a">aaa</label>
+                <input type="radio" name="ride1" id="b"  value="2" /> <label for="b">bbb</label>
+                <input type="radio" name="ride1" id="c"  value="3" /> <label for="c">ccc</label>
+            </td>
+        </div>
+
+        <div class="list">
+        <input name="btntest1" type="BUTTON" value="콤보 값 읽기 " onClick="fnTest3()"> <br>
+        <td>
+        <SELECT style="width:100px" name="comboAppr2" class="comboAppr" id="comboAppr">
+            <OPTION value="1">기안자</OPTION>
+            <OPTION value="2">승인자</OPTION>
+            <OPTION value="3">합의자</OPTION>
+        </SELECT>
+    </div>
+
+    <div class="list">
+        <input name="btntest1" type="BUTTON" value="라디오 값 읽기 " onClick="fnTest4()"> <br>
+        <label>하고싶은 말<textarea placeholder="입력하세요" name="textarea2" id="textarea2"></textarea><br />
+    </div>
+
+
+    <div class="list">
+     <input name="btntest1" type="BUTTON" value="체크 값 읽기 " onClick="fnTest5()"> <br>
+
+     <input type="checkbox" name="cb" class="zz" id="a1" value="JAVA1">  <label for="a1">JAVA1</label>
+     <input type="checkbox" name="cb" class="zz" id="b1" value="JAVA2">  <label for="b1">JAVA2</label>
+     <input type="checkbox" name="cb" class="zz" id="c1" value="JAVA3">   <label for="c1">JAVA3</label>
+    </div>
+
+
+    </form>
+
+
+</body>
+
+</html>

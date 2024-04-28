@@ -9,3 +9,4 @@
 <a href="bord" >썸머노트</a> <br>
 <a href="/fileUpLoad.jsp" >파일업로드</a> <br>
 <a href="/download.jsp" >파일다운로드</a> <br>
+<a href="/jqueryTest.html" >jquery개념설명 / 기능</a> <br>
