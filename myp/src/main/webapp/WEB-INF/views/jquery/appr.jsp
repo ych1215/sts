@@ -103,9 +103,9 @@
                     },
                     */
 
-                    contentType: "application/json", // 위와 동일함.
+                    contentType: "application/json",  // 서버에 전달할 타임 , 기본이 application/x-www-form-urlencoded 이다, data:a=112&z=442 이런식으로하고 리퀘스트겟파라미터로 받아아함.    // 위와 동일함.
 
-                    dataType: 'json',       // 데이터 타입 (html, xml, json, text 등등)   
+                    dataType: 'json',       // 서버에서 받을 데이터 타입 (html, xml, json, text 등등)   
 
                     data: JSON.stringify({  // 보낼 데이터 (Object , String, Array) 
                         "no": 1, "shcNm": shcNm, "nick": "nick"
