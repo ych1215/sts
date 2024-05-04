@@ -4,7 +4,7 @@
     <html>
 
     <head>
-        <!--  /views/jquery3.7.1.js 에 잇는것은 스프링에서 접근이 안되므로  /myp/src/main/resources/static/js/jquery3.7.1.js  것을 사용함  -->
+        <!-- WEB-INF 하위 폴더에서는  /views/jquery3.7.1.js 에 잇는것은 스프링에서 접근이 안되므로  /myp/src/main/resources/static/js/jquery3.7.1.js  것을 사용함  -->
         <script src="js/jquery3.7.1.js"></script>
 
         <style type="text/css">

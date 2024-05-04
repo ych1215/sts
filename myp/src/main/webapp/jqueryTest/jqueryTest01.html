@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> </title>
+    <style>
+        body{
+          /*  font-size:10pt;     */
+          /*  font-family:"굴림"; */       
+        }
+        div, p, ul, li{
+            border:2px #eeeeee solid;
+            margin:10px;
+        }
+        ul {
+         padding:10px;
+        }
+        li.select {
+            background-color:#ccc;
+        }
+    </style>
+    
+    <script src="./jquery3.7.1.js"></script> <!-- WEB-INF 하위 폴더가 아니므로 현재폴더의 경로를 써준다 -->
+    <script>
+        
+            $(document).ready(function() {
+
+                $("#tet1").on("click", function (e) {
+                    fnTest1();
+                });
+
+                $("#tet2").on("click", function (e) {
+                    fnTest2();
+                });
+
+                $("#tet3").on("click", function (e) {
+                    fnTest3();
+                });
+
+                $("#tet4").on("click", function (e) {
+                    fnTest4();
+                });
+
+                $("#tet5").on("click", function (e) {
+                    fnTest5();
+                });
+
+                $("#tet6").on("click", function (e) {
+                    fnTest6();
+                });
+
+            });
+
+
+            function fnTest1() {
+                $("div.sample-content ul.menu li").css("background", "green");
+            }
+
+            function fnTest2() {
+                $("[data-value='2']").css("background", "pink");
+            }
+
+            function fnTest3() {
+                
+                $("div.sample-content ul.menu li").eq(0).css("background", "pink");  
+                // eq함수는 jquery 객체를 리턴 한다.
+
+                debugger;
+                var a = $("div.sample-content ul.menu li").get(1); // get하수는 돔객체를 리턴한다.
+                //var a = $("div.sample-content ul.menu li")[1]; // 위와 동일 
+
+                $(a).css("background", "pink"); // 돔객체럴 파라미터에 넣어도 된다.
+
+                var a2 = $("div.sample-content ul.menu li").eq(3);
+                $(a2).css("background", "pink"); // jquey객체를 넣어도 된다.
+                // 즉 돔객체, 문자열, jquery객체를 셀렉터에 넣을수 있다.
+
+
+            }
+
+            function fnTest4() {
+
+                $(".content-data p").each ( 
+                    function (ii) {
+                        //$(this).css("background", "pink");
+
+                        console.log(ii); // 순번이 파라미터 온다 
+                        $(this).css("background", "pink"); // this는 현재 객체이고 jquery 에 돔객체를 넣어서 셀러터 할수 있다.
+                    }
+                );
+
+                // each 안해도 아래 처럼 해도 됨.
+                var $arr = $(".content-data p");
+                var cnt = $arr.length;                
+                for (var i=0; i<cnt; i++) {
+                    if (i==2) {
+                        $arr.eq(i).css("background", "green"); // eq함수는 jquery객체가 리턴된다.
+                    }
+                }
+
+            }
+
+            function fnTest5() {
+                $(".menu li").filter(".test1").css("background", "green"); 
+                // 찾은거에서 다시 찾기 , 자손, 자식 은 안되며 .menu li 에 해당하는 것만 해당함. find 함수와의 차이점.
+            }
+
+            function fnTest6() {
+                $("#content").find(".test1").css("background", "green"); 
+                // 찾은거에서 다시 찾기 , 자손, 자식 모두 찾는다 필터 함수와의 차이점.
+                // samplePage 으로 찾아도 동일함.
+            }
+
+    </script>
+</head>
+    
+<body>
+    <div id="samplePage" class="page" >
+        샘플 페이지(div, id=samplePage, class=page)
+        
+        <div id="header">               
+            헤더 영역(div, id=header)
+        </div>
+
+        <div id="content" class="sample-content">
+            노드 찾기(div, id=content, class=sample-content)
+            <ul class="menu">
+                일반 노드 찾기(ul, class=menu)
+                <li data-value="1">id로 찾기(li, data-value=1)</li>
+                <li class="select">tag로 찾기(li, class=select)</li>
+                <li data-value="2">class로 찾기(li, data-value=2)</li>
+                <li class="test1">속성으로 찾기(li, class=test1)</li>
+                <li class="test1">속성으로 찾기(li, class=test1)2222</li>
+            </ul>
+            <div class="content-data">
+                자식 노드 찾기(div, class=content-data)
+                <p class="test1">1. 모든 자식 노드 찾기(p, class=test1)</p>
+                <p>2. 특정 자식 노드만 찾기(p)</p>
+                <p class="test2">3. 마지막 자식 노드 찾기(p, class=test2)</p>
+            </div>
+        </div>
+        
+        <div id="footer">               
+            푸터 영역(div, id=footer)
+        </div>      
+
+    </div>  
+
+    <DIV id="tet1"> 클래스로 찾기 </DIV>
+    <DIV id="tet2"> 속성으로 찾기 </DIV>
+    <DIV id="tet3"> 찾은노드중 n번째 접근하기 </DIV>
+    <DIV id="tet4"> 노드 each() </DIV>
+    <DIV id="tet5"> filter 함수 특정노드만 찾기 / 찾은것만에서 필터 한다</DIV>
+    <DIV id="tet6"> find   함수 특정노드만 찾기 / 자식, 자손 모두 찾는다 </DIV>
+  
+
+
+</body>
+
+</html>
