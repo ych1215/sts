@@ -49,6 +49,21 @@
                 $("#tet6").on("click", function (e) {
                     fnTest6();
                 });
+                $("#tet7").on("click", function (e) {
+                    fnTest7();
+                });
+                $("#tet8").on("click", function (e) {
+                    fnTest8();
+                });
+                $("#tet9").on("click", function (e) {
+                    fnTest9();
+                });
+                $("#tet10").on("click", function (e) {
+                    fnTest10();
+                });
+                $("#tet11").on("click", function (e) {
+                    fnTest11();
+                });
 
             });
 
@@ -112,6 +127,35 @@
                 // samplePage 으로 찾아도 동일함.
             }
 
+            function fnTest7() {
+                //$("#samplePage").children().css("border", "4px solid #f00");  // 파라미터가 없으면 전제 자식노드 찾기 , find는 자식 , 자손 모드 찾지만 이것은 자식만 셀렉터 한다.
+                $("#samplePage").children("#footer").css("border", "4px solid #f00"); // 파라미터가 있으면 특정 자식노드만 찾기 
+                
+            }
+
+            function fnTest8() {
+                $(".menu").children().eq(0).css("border", "4px solid #f00");  // 1번재 자식 노식 찾기 , 밑에 처럼 여러가지 방법이 있다.
+              //  $(".menu").children().first().css("border", "4px solid #f00");  // 1번재 자식 노식 찾기 
+               // $(".menu").children(":first").css("border", "4px solid #f00");   // 1번재 자식 노식 찾기 
+               // $(".menu").children(":eq(0)").css("border", "4px solid #f00");   // 1번재 자식 노식 찾기 
+               // 마지막 찾기는 .list().css
+            }
+
+            function fnTest9() {
+                $(".test2").parent().css("border", "4px solid #f00"); 
+            }
+            function fnTest10() {
+                $(".test2").parents().css("border", "4px solid #f00"); 
+              //  $(".test2").parents("#samplePage").css("border", "4px solid #f00");  // 특정 조상 노드만 찾기 
+            }
+            function fnTest11() {
+                $(".menu .select").prev().css("border", "4px solid #f00"); // 이전 노드 찾기
+                //$(".menu .select").prevAll().css("border", "4px solid #f00");  // 모든 이전 노드  , 파라미터로 특정 노드만 찾기 가능 
+                //$(".menu .select").next().css("border", "4px solid #f00"); // 다음 노드 찾기 
+                //$(".menu .select").nextAll().css("border", "4px solid #f00"); // 모든 다음 노드 찾기 , 파라미터로 특정 노드만 찾기 가능 
+            }
+
+
     </script>
 </head>
     
@@ -153,7 +197,12 @@
     <DIV id="tet4"> 노드 each() </DIV>
     <DIV id="tet5"> filter 함수 특정노드만 찾기 / 찾은것만에서 필터 한다</DIV>
     <DIV id="tet6"> find   함수 특정노드만 찾기 / 자식, 자손 모두 찾는다 </DIV>
-  
+    <DIV id="tet7"> children / 자식노드 찾기 ,  children("aaa") 넣으면 자식중 특정 노드만 찾는다  </DIV>
+    <DIV id="tet8"> children / 자식노드 중 n번째 찾기  </DIV>
+    <DIV id="tet9"> parent   / 부모노드  찾기  </DIV>
+    <DIV id="tet10"> parents  / 조상노드  찾기 , 부모+조상 찾는다  </DIV>
+    <DIV id="tet11"> 어전노드 / 다음노드 찾기   </DIV>
+
 
 
 </body>

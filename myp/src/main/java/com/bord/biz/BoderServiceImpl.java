@@ -12,23 +12,45 @@ import com.login.dao.LoginMapper;
 @Service
 public class BoderServiceImpl {
 
-   @Autowired
-   BorderMapper borderMapper;
-   
-   
-  public List<Map<String, Object>> selectBordList(Map<String, Object> map) throws Exception {
-       return borderMapper.selectBordList(map);
-   }
+	@Autowired
+	BorderMapper borderMapper;
 
-   /**
-    * 섬머 보드 저장 
-    * @param map
-    * @return
-    * @throws Exception
-    */
-   public int saveSummernoteBord(Map<String, Object> map) throws Exception {
-       return borderMapper.saveSummernoteBord(map);
-   }
-   
+	public List<Map<String, Object>> selectBordList(Map<String, Object> map) throws Exception {
+		return borderMapper.selectBordList(map);
+	}
+
+	public List<Map<String, Object>> selectBordClobList(Map<String, Object> map) throws Exception {
+		return borderMapper.selectBordClobList(map);
+	}
+
+	/**
+	 * 섬머 보드 저장
+	 * 
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int saveSummernoteBord(Map<String, Object> map) throws Exception {
+		return borderMapper.saveSummernoteBord(map);
+	}
+
+	/**
+	 * 섬머 보드 저장 clob
+	 * 
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int saveSummernoteBordClob(Map<String, Object> map) throws Exception {
+		return borderMapper.saveSummernoteBordClob(map);
+	}
+
+	public String selectSeq(Map<String, Object> map) throws Exception {
+		return borderMapper.selectSeq(map);
+	}
+
+	public List<Map<String, Object>> selectPgmBordList(Map<String, Object> map) throws Exception {
+		return borderMapper.selectPgmBordList(map);
+	}
+
 }
-

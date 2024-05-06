@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="com.bord.dao.BorderMapper">
+
+	<resultMap id="bordClobResultMap" type="java.util.Map">
+		<result property="BORD_CLOB" column="BORD" jdbcType="CLOB"
+			javaType="java.lang.String" />
+		<result property="SEQ" column="SEQ" />
+	</resultMap>
 
 
 	<select id="selectBordList" parameterType="Map" resultType="Map">
@@ -9,25 +16,69 @@
 		FROM YCH_LOGIN_INFO
 		WHERE seq = 99999
 	</select>
-	
-	
-	
+
+	<select id="selectBordClobList" parameterType="Map"
+		resultMap="bordClobResultMap">
+		SELECT BORD_CLOB as BORD
+		, SEQ as SEQ
+		FROM YCH_LOGIN_INFO
+		WHERE seq = ( SELECT NVL(MAX(SEQ), 1) FROM YCH_LOGIN_INFO )
+	</select>
+
+	<select id="selectSeq" parameterType="Map" resultType="String">
+
+		SELECT NVL(MAX(SEQ), 1) AS SEQ
+		FROM YCH_LOGIN_INFO
+
+	</select>
+
+
 	<update id="saveSummernoteBord" parameterType="Map">
 
 		INSERT INTO YCH_LOGIN_INFO
 		(
 		SEQ,
 		BORD ,
+		BORD_CLOB ,
 		CREATE_DT
 		)
 		VALUES
 		(
-		  (SELECT NVL(MAX(SEQ) + 1 , 1) FROM YCH_LOGIN_INFO  ),
+		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM YCH_LOGIN_INFO ),
 		#{BORD} ,
-		sysdate 
+		#{BORD, jdbcType=CLOB} ,
+		sysdate
 		)
 
 	</update>
+
+	<update id="saveSummernoteBordClob" parameterType="Map">
+
+		INSERT INTO YCH_LOGIN_INFO
+		(
+		SEQ,
+		BORD_CLOB ,
+		CREATE_DT
+		)
+		VALUES
+		(
+		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM YCH_LOGIN_INFO ),
+		#{BORD, jdbcType=CLOB} ,
+		sysdate
+		)
+
+	</update>
+
+
+	<select id="selectPgmBordList" parameterType="Map" resultType="Map">
+		SELECT A.SEQ        AS SEQ
+		     , A.BORD_TYPE  AS BORD_TYPE
+			 , A.TITLE      AS TITLE
+			 , TO_CHAR(A.CREATE_DT, 'YYYY-MM-DD')  AS CREATE_DT
+			 , TO_CHAR(A.UPDATE_DT, 'YYYY-MM-DD')  AS UPDATE_DT
+		  FROM PGM_BORD A
+		 ORDER BY SEQ DESC 
+	</select>
 
 
 </mapper>

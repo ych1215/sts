@@ -34,14 +34,14 @@ String alllist = (String)request.getAttribute("Alllist");
 
 <script>
 
-	// 읽어 오기 
+	// 내용 읽기
     function test() {
         var markupStr = $('#summernote').summernote('code');
          alert(markupStr);
         
     }
     
-    	// 쓰기 
+    	// 내용 쓰기
        function test2() {
        
        var markupStr = '<p><b>Hello Summernote</b></p><blockquote><b>THAJDLEK</b></blockquote><blockquote><b>GGG</b></blockquote><p><b><br></b></p>';
@@ -58,7 +58,7 @@ String alllist = (String)request.getAttribute("Alllist");
     }
 
 
-    // 툴바 없애기 
+    // 저장
     function save() { 
       var frm = document.form;
       frm.action = 'saveSummernoteBord';
@@ -72,7 +72,26 @@ String alllist = (String)request.getAttribute("Alllist");
 
       frm.submit();
     }
+
+      // CLOB 저장
+      function saveClob() { 
+      var frm = document.form;
+      frm.action = 'saveSummernoteBordClob';
+      frm.method  = "post";
+
+      var markupStr = $('#summernote').summernote('code');
+
+      frm.BORD.value = markupStr;
+
+      debugger;
+
+      frm.submit();
+    }
     
+    // 목록 읽기
+    function read() { 
+
+    }
    
     
     
@@ -83,7 +102,7 @@ String alllist = (String)request.getAttribute("Alllist");
   <form id="form" name="form">
 
   <div id="summernote"><p>Hello Summernote</p></div>
-   <div id="summernote2"><p>Hello Summernote2</p></div>
+
   
   <script>
     $(document).ready(function() {
@@ -92,39 +111,27 @@ String alllist = (String)request.getAttribute("Alllist");
         {
 		  airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
 		   lang: 'ko-KR' , // default: 'en-US' 
-		    height: null,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게..
+		    height: 400,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게..
 			  minHeight: null,             // set minimum height of editor
 			  maxHeight: null,             // set maximum height of editor
 			  focus: true                  // set focus to editable area after initializing summe
 		}
         
         );
-        
-        
-          $('#summernote2').summernote(
-        
-        {
-		    airMode: false , // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
-		   lang: 'ko-KR', // default: 'en-US' 
-		    height: 100,                 // set editor height
-			  minHeight: null,             // set minimum height of editor
-			  maxHeight: null,             // set maximum height of editor
-			  focus: true                  // set focus to editable area after initializing summe
-		}  
-        );
-        
+
         $('#summernote').summernote('code', '<%=alllist%>');
         
         
     });
   </script>
   
+
   
-  
-   <input name="btnSave"  type="BUTTON" value="썸머노트읽기11" onClick="test()">
-   <input name="btnSave"  type="BUTTON" value="썸머노트쓰기22" onClick="test2()">
-   <input name="btnSave"  type="BUTTON" value="툴바없애기2" onClick="test3()">
-   <input name="btnSave"  type="BUTTON" value="저장" onClick="save()">
+   <input name="btnSave"  type="BUTTON" value="내용 읽기" onClick="test()">
+   <input name="btnSave"  type="BUTTON" value="내용 쓰기" onClick="test2()">
+   <input name="btnSave"  type="BUTTON" value="툴바없애기" onClick="test3()">
+   <input name="btnSave"  type="BUTTON" value="목록읽기" onClick="read(1111)">
+   <input name="btnSave"  type="BUTTON" value="CLOB로 저장" onClick="saveClob()">
 
    <input name="BORD" id="BORD" type="input" value="" onClick="save()">
    
