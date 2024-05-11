@@ -119,7 +119,8 @@ String alllist = (String)request.getAttribute("Alllist");
         
         );
 
-        $('#summernote').summernote('code', '<%=alllist%>');
+        var con = `<%=alllist%>`;
+        $('#summernote').summernote('code', con);
         
         
     });

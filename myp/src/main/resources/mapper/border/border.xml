@@ -11,13 +11,13 @@
 
 
 	<select id="selectBordList" parameterType="Map" resultType="Map">
-		SELECT BORD_CLOB as BORD
+		SELECT BORD as BORD
 		FROM YCH_LOGIN_INFO
 		WHERE seq = 99999
 	</select>
 
 	<select id="selectBordClobList" parameterType="Map"	resultMap="bordClobResultMap">
-		SELECT BORD_CLOB as BORD
+		SELECT REPLACE(BORD_CLOB, '`', '\`') as BORD
 		,seq as seq
 		,'xx' as rr
 		FROM YCH_LOGIN_INFO

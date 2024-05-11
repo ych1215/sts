@@ -44,7 +44,7 @@ String alllist = (String)request.getAttribute("Alllist");
     	// 쓰기 
        function test2() {
        
-       var markupStr = '<p><b>Hello Summernote</b></p><blockquote><b>THAJDLEK</b></blockquote><blockquote><b>GGG</b></blockquote><p><b><br></b></p>';
+       var markupStr = `<p><b>Hello 'Summernote</b></p><blockquote><b>THAJDLEK</b></blockquote><blockquote><b>GGG</b></blockquote><p><b><br></b></p>`;
 		$('#summernote').summernote('code', markupStr);
 
         
