@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.bord.biz.UserDTO;
+
 @Mapper
 public interface BorderMapper {
 
@@ -12,9 +14,9 @@ public interface BorderMapper {
 
 	public int saveSummernoteBord(Map<String, Object> map);
 
-	public int saveSummernoteBordClob(Map<String, Object> map);
+	public int saveSummernoteBordClob(UserDTO map);
 
-	public List<Map<String, Object>> selectBordClobList(Map<String, Object> map);
+	public List<UserDTO> selectBordClobList(Map<String, Object> map);
 
 	public String selectSeq(Map<String, Object> map);
 

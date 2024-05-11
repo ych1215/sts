@@ -11,6 +11,8 @@
 <a href="/fileUpLoad.jsp" >파일업로드</a> <br>
 <a href="/download.jsp" >파일다운로드</a> <br><br>
 
+<a href="/json" >ajax로 json호출 / cors에러 방지 </a> <br><br>
+
 자바스크립트+jquery책 연습<br>
 ㄴ <a href="jqueryTest/jqueryTest.html" >jquery개념 / 컴퍼넌트값읽고쓰기</a> <br>
 ㄴ <a href="jqueryTest/jqueryTest01.html" >아이디, 클래스, 태그, 속성 으로 셀럭터하기 </a> <br>

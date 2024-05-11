@@ -4,6 +4,10 @@
     <%@ page import="java.util.Map" %>
       <%@ page import="java.util.List" %>
         <%@ page import="java.util.HashMap" %>
+        
+        <%
+        	 out.println( request.getParameter("aaa"));
+        %>
 
 
 
@@ -62,7 +66,7 @@
 
               <script>
 
-                function saveClob() {
+                function saveClob() {  
                   var frm = document.form;
                   frm.action = 'saveSummernoteBordClob';
                   frm.method = "post";
@@ -76,9 +80,17 @@
                   frm.submit();
                 }
 
+		          function test1(type) {
+                  alert(type);
+                }
+                
 
                 function changeType(type) {
-                  alert(type);
+                
+                document.title = "xxxxxxx"; // 넘겨줄 값 셋팅, 동일하면 안듬
+                 // alert(type);
+                // debugger
+                // document.all();
                 }
 
 
@@ -97,7 +109,7 @@
                         <OPTION value="ORACLE">오라클</OPTION>
                         <OPTION value="JAVASCRIPT">자바크립트</OPTION>
                       </SELECT>
-                      <input name="schNm" id="schNm" type="input" size="50" value="">
+                      <input name="schNm" id="schNm" type="input" size="50" value="1215">
                       <input name="apprSchNm" id="apprSchNm" type="BUTTON" value="검색" onClick="">
 
                     </div>

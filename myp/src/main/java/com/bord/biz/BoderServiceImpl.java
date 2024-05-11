@@ -19,7 +19,7 @@ public class BoderServiceImpl {
 		return borderMapper.selectBordList(map);
 	}
 
-	public List<Map<String, Object>> selectBordClobList(Map<String, Object> map) throws Exception {
+	public List<UserDTO> selectBordClobList(Map<String, Object> map) throws Exception {
 		return borderMapper.selectBordClobList(map);
 	}
 
@@ -41,7 +41,7 @@ public class BoderServiceImpl {
 	 * @return
 	 * @throws Exception
 	 */
-	public int saveSummernoteBordClob(Map<String, Object> map) throws Exception {
+	public int saveSummernoteBordClob(UserDTO map) throws Exception {
 		return borderMapper.saveSummernoteBordClob(map);
 	}
 

@@ -4,23 +4,22 @@
 
 <mapper namespace="com.bord.dao.BorderMapper">
 
-	<resultMap id="bordClobResultMap" type="java.util.Map">
-		<result property="BORD_CLOB" column="BORD" jdbcType="CLOB"
-			javaType="java.lang.String" />
-		<result property="SEQ" column="SEQ" />
+	<resultMap id="bordClobResultMap" type="com.bord.biz.UserDTO">
+		<result property="bord" column="bord" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="tel" column="tel" />
 	</resultMap>
 
 
 	<select id="selectBordList" parameterType="Map" resultType="Map">
-		SELECT BORD as bord
+		SELECT BORD_CLOB as BORD
 		FROM YCH_LOGIN_INFO
 		WHERE seq = 99999
 	</select>
 
-	<select id="selectBordClobList" parameterType="Map"
-		resultMap="bordClobResultMap">
+	<select id="selectBordClobList" parameterType="Map"	resultMap="bordClobResultMap">
 		SELECT BORD_CLOB as BORD
-		, SEQ as SEQ
+		,seq as seq
+		,'xx' as rr
 		FROM YCH_LOGIN_INFO
 		WHERE seq = ( SELECT NVL(MAX(SEQ), 1) FROM YCH_LOGIN_INFO )
 	</select>
@@ -52,7 +51,7 @@
 
 	</update>
 
-	<update id="saveSummernoteBordClob" parameterType="Map">
+	<update id="saveSummernoteBordClob" parameterType="com.bord.biz.UserDTO">
 
 		INSERT INTO YCH_LOGIN_INFO
 		(
@@ -63,7 +62,7 @@
 		VALUES
 		(
 		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM YCH_LOGIN_INFO ),
-		#{BORD, jdbcType=CLOB} ,
+		#{bord},
 		sysdate
 		)
 

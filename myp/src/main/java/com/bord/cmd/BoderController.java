@@ -7,9 +7,11 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bord.biz.BoderServiceImpl;
+import com.bord.biz.UserDTO;
 import com.login.biz.LoginServiceImpl;
 
 import jakarta.annotation.Resource;
@@ -64,17 +66,25 @@ public class BoderController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		List<Map<String, Object>> allMembers = boderServiceImpl.selectBordClobList(map);
+		List<UserDTO> allMembers = boderServiceImpl.selectBordClobList(map);
 
 		if (allMembers == null || allMembers.size() == 0 || allMembers.get(0) == null) {
 			System.out.println("BORD::" + "empt");
 			mav.addObject("Alllist", "empt");
 
 		} else {
-			mav.addObject("Alllist", allMembers.get(0).get("BORD_CLOB"));
-			System.out.println("BORD::" + allMembers.get(0).get("BORD_CLOB"));
-			System.out.println("SEQ::" + allMembers.get(0).get("SEQ"));
+			mav.addObject("Alllist", allMembers.get(0).getBord());
+			System.out.println("BORD::" + allMembers.get(0).getBord());
+			System.out.println("SEQ::" + allMembers.get(0).getBord());
 		}
+		
+		
+		//String url = "https://jsonplaceholder.typicode.com/posts/1";
+		String url = "http://localhost:8089/users3/aaa/zzzz?qqq=23232";
+
+		RestTemplate restTemplate = new RestTemplate();
+		String json = restTemplate.getForObject(url, String.class);
+		System.out.println("json::" +  json);
 
 		mav.setViewName("summernoteBordClob");
 		return mav;
@@ -125,8 +135,13 @@ public class BoderController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("BORD", request.getParameter("BORD"));
+		
+		UserDTO userDTO = new UserDTO();
+		
+		userDTO.setBord(request.getParameter("BORD"));
 
-		boderServiceImpl.saveSummernoteBordClob(map);
+		boderServiceImpl.saveSummernoteBordClob(userDTO);
+		
 
 		// mav.setViewName("summernoteBordClob");
 		// return mav;
@@ -154,6 +169,25 @@ public class BoderController {
 		mav.addObject("pmgBordList", pmgBordList);
 
 		mav.setViewName("pgmBord");
+		return mav;
+
+	}
+	
+	
+	/**
+	 * json 테스트 
+	 * 
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	@RequestMapping("json")
+	public ModelAndView selectJsonPage(HttpServletRequest request) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/jquery/jsontest");
 		return mav;
 
 	}
