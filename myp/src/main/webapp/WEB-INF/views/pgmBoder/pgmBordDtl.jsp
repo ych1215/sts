@@ -49,7 +49,7 @@
         {
           airMode: false ,             // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
           lang: 'ko-KR' ,              // default: 'en-US' 
-          height: 590,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게..
+          height: null,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게.. height: 590, 
           minHeight: null,             // set minimum height of editor
           maxHeight: null,             // set maximum height of editor
           focus: true                  // set focus to editable area after initializing summe
@@ -94,9 +94,9 @@
       <div id="sch">
         게시판구분
         <SELECT style="width:200px" name="bordType" id="bordType"  class="comboAppr" onchange="changeType(this.value)">       
-          <OPTION value="JAVA">JAVA</OPTION>
-          <OPTION value="ORACLE">오라클</OPTION>
-          <OPTION value="JAVASCRIPT">자바크립트</OPTION>
+          <OPTION value="JAVA"       <%= "JAVA".equals(bordType) ? "selected" : "" %>>JAVA</OPTION>
+          <OPTION value="ORACLE"     <%= "ORACLE".equals(bordType) ? "selected" : "" %> >오라클</OPTION>
+          <OPTION value="JAVASCRIPT" <%= "JAVASCRIPT".equals(bordType) ? "selected" : "" %>>자바크립트</OPTION>
         </SELECT>
         &nbsp;&nbsp;&nbsp;제목 : 
         <input name="title" id="title" type="input"  style="width:300PX" value="<%=title%>">
