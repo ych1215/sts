@@ -3,7 +3,9 @@
 메뉴
 <br><br>
 
-<a href="pgmBord" >프로그램 게시판</a> <br><br>
+<a href="pgm_bord" >프로그램 게시판 NEW </a> <br><br>
+
+<a href="pgmBord" >프로그램 게시판</a> <br>
 <a href="appr" >승인처리 (jquery)</a> <br>
 <a href="proxy_jsp" >아이프레임 테스트</a> <br>
 <a href="bord" >썸머노트</a> <br>

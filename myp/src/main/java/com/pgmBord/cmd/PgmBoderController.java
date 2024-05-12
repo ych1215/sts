@@ -1,0 +1,154 @@
+package com.pgmBord.cmd;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.bord.biz.UserDTO;
+import com.pgmBord.biz.PgmBoderServiceImpl;
+
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class PgmBoderController {
+
+	@Resource
+	PgmBoderServiceImpl pgmBoderServiceImpl;
+
+	/**
+	 * 프로그램 보드 조회
+	 * 
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	@RequestMapping("pgm_bord")
+	public ModelAndView selectPgmBordList (
+											  HttpServletRequest request 
+											, HttpServletResponse response
+											, HttpSession session
+											, @RequestParam Map<String, Object> params
+											, @RequestHeader("Host") String host
+											/*
+											  @RequestBody List<Map<String, Object>> param  json 리스트 받기
+											  @RequestBody Map<String, Object> param   json 단건 받기
+											 */
+											
+			                              ) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		//Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println(params.toString());
+
+		List<Map<String, Object>> pgmBordList = pgmBoderServiceImpl.selectPgmBordList(params);
+
+		mav.addObject("pgmBordList", pgmBordList);
+
+		mav.setViewName("pgmBordList");
+		return mav;
+
+	}
+	
+	/**
+	 * 프로그램 보드 상세 조회
+	 * 
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	@RequestMapping("pgm_bord_dtl")
+	public ModelAndView selectPgmBordDtl (@RequestParam Map<String, Object> params) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("파람::" + params.toString());
+
+		Map<String, Object> pgmBordDtl = pgmBoderServiceImpl.selectPgmBordDtl(params);
+
+		mav.addObject("pgmBordDtl", pgmBordDtl);
+		
+		mav.setViewName("pgmBordDtl");
+		return mav;
+
+	}
+	
+	
+	/**
+	 *  프로그램 보드 신규 페이지 조회
+	 * 
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional
+	@RequestMapping("pgm_bord_new")
+	public ModelAndView newPgmBordDtl(@RequestParam Map<String, Object> params) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("pgmBordDtlNew");
+		return mav;
+		
+
+	}
+	
+	/**
+	 *  프로그램 보드 상세 저장
+	 * 
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional
+	@RequestMapping("pgm_bord_dtl_save")
+	public String savePgmBordDtlSave(@RequestParam Map<String, Object> params) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		
+		
+		System.out.println("내용::"+ params.toString());
+		
+		pgmBoderServiceImpl.savePgmBordDtlSave(params);
+		
+		return "redirect:/pgm_bord";
+
+	}
+	
+	
+	/**
+	 *  프로그램 보드 상세 수정
+	 * 
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional
+	@RequestMapping("pgm_bord_dtl_update")
+	public String savePgmBordDtlUpdate(@RequestParam Map<String, Object> params) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		
+		
+		System.out.println("내용::"+ params.toString());
+		
+		pgmBoderServiceImpl.savePgmBordDtlUpdate(params);
+		
+		return "redirect:/pgm_bord";
+
+	}
+
+}

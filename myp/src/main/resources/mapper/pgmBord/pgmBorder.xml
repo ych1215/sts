@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.pgmBord.dao.PgmBorderMapper">
+		
+
+	<resultMap id="pgmBordDtlMap" type="Map">
+		<result property="CONTENTS" column="CONTENTS" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="SEQ" column="SEQ" />
+		<result property="TITLE" column="TITLE" />
+		<result property="BORD_TYPE" column="BORD_TYPE" />
+		<result property="KEYWORD" column="KEYWORD" />
+		
+	</resultMap>
+
+	<select id="selectPgmBordList" parameterType="Map" resultType="Map">
+		
+		SELECT A.SEQ       AS SEQ         
+	         , A.TITLE     AS TITLE    
+	         , A.BORD_TYPE AS BORD_TYPE
+	         , A.KEYWORD   AS KEYWORD  
+	         , TO_CHAR(A.CREATE_DT, 'yyyy-mm-dd-hh24:mi:ss') AS CREATE_DT
+	         , TO_CHAR(A.UPDATE_DT, 'yyyy-mm-dd-hh24:mi:ss') AS UPDATE_DT
+		  FROM PGM_BORD_LIST A
+		 WHERE 1 = 1
+		 
+		  <if test=' bordType != null and bordType !="" '>
+		  AND BORD_TYPE  =  #{bordType}
+		 </if>
+		 
+		  <if test=' title != null and title !="" and keyWord == null and keyWord == ""  '>
+		  AND TITLE  LIKE '%' ||  #{title} || '%'
+		 </if>
+		 <if test=' title == null and title =="" and keyWord != null  and keyWord !="" '>
+		  AND KEYWORD LIKE '%' ||  #{keyWord} || '%'
+		 </if>
+		 
+		 <if test=' keyWord != null and keyWord != "" and title != null and title != ""  '>
+		  AND (  TITLE  LIKE '%' ||  #{title} || '%'  OR   KEYWORD LIKE '%' ||  #{keyWord} || '%' )
+		  </if>	  
+		 
+		  <if test=' keyWord == null and  keyWord == "" and title == null and title == ""  '>
+		  AND ROWNUM <![CDATA[  <  ]]> 100
+		  </if>	  
+		  ORDER BY A.SEQ DESC
+		  
+	</select>
+	
+	
+	<select id="selectPgmBordDtl" parameterType="Map" resultMap="pgmBordDtlMap">
+		
+		SELECT TO_CHAR(A.SEQ)                 AS SEQ        
+		     , REPLACE(A.CONTENTS, '`', '\`') AS CONTENTS
+		     , A.TITLE
+		     , A.BORD_TYPE
+		     , A.KEYWORD
+		  FROM PGM_BORD_LIST A
+		 WHERE A.SEQ = #{seq}
+	</select>
+	
+	<update id="savePgmBordDtlSave" parameterType="Map">
+
+		INSERT INTO PGM_BORD_LIST 
+		    (
+		        SEQ
+		      , TITLE
+		      , BORD_TYPE
+		      , KEYWORD
+		      , CONTENTS
+		      , CREATE_DT
+		      , UPDATE_DT
+		
+		      )
+		      VALUES
+		      (
+		         (SELECT NVL(MAX(SEQ) + 1 , 1) FROM PGM_BORD_LIST )
+		        , #{title} 
+		        , #{bordType} 
+			    , #{keyWord} 
+				, #{contents}
+		        , SYSDATE
+			    , SYSDATE
+		    )
+
+	</update>
+	
+	<update id="savePgmBordDtlUpdate" parameterType="Map">
+		
+		UPDATE PGM_BORD_LIST
+		  SET    TITLE     = #{title} 
+		      , BORD_TYPE = #{bordType} 
+		      , KEYWORD   = #{keyWord} 
+		      , CONTENTS  = #{contents}
+		      , UPDATE_DT = SYSDATE
+		  WHERE SEQ = #{seq}
+
+	</update>
+
+
+</mapper>
+
