@@ -4,13 +4,10 @@
     <%@ page import="java.util.Map" %>
       <%@ page import="java.util.List" %>
         <%@ page import="java.util.HashMap" %>       
-     
-
 
           <% 
           
             List<Map<String, Object>> pmgBordList = (List<Map<String, Object>>)request.getAttribute("pgmBordList");
-
           %>
 
               <!DOCTYPE html>
@@ -69,8 +66,6 @@
 
               </head>
 
-              
-
               <script type="text/javascript">
 
                 $(document).ready(function () {
@@ -78,7 +73,6 @@
                     $(".seq").click(function () {
 
                      var seq = this.innerText;
-
 
                      location.href = "pgm_bord_dtl?seq="+seq;
 
@@ -103,9 +97,6 @@
                   frm.method = "post";
                   frm.submit();
                  }
-                 
-
-              
 
               </script>
 
@@ -123,13 +114,10 @@
                         <OPTION value="JAVASCRIPT">자바크립트</OPTION>
                       </SELECT>
                       제목 : 
-                      <input name="title" id="title" type="input" size="50" value="">
-                      
+                      <input name="title" id="title" type="input" size="50" value="">                      
                       키워드 : 
                       <input name="keyWord" id="keyWord" type="input" size="50" value="">
-
                       <input name="schButton" id="schButton" type="BUTTON" value="검색" onClick="fnSch()">
-
                     </div>
 
                     <input name="new" id="new" type="BUTTON" value="등록" onClick="fnNew()">
@@ -143,7 +131,6 @@
                         <th width="15%" class="border_last">등록일자</td>
                       </tr>
 
-
                       <% 
                       HashMap bordMap = new HashMap(); 
 
@@ -155,7 +142,7 @@
                         <tr>
                           <td height="20" class="seq">
                             <a href="#" >
-                             <%=bordMap.get("SEQ")%> 
+                            <%=bordMap.get("SEQ")%> 
                             </a>
                           </a> 
                           </td>

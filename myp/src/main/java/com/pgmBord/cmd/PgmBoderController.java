@@ -1,6 +1,5 @@
 package com.pgmBord.cmd;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bord.biz.UserDTO;
 import com.pgmBord.biz.PgmBoderServiceImpl;
 
 import jakarta.annotation.Resource;
@@ -26,7 +24,7 @@ public class PgmBoderController {
 	PgmBoderServiceImpl pgmBoderServiceImpl;
 
 	/**
-	 * 프로그램 보드 조회
+	 * 프로그램 보드 목록 조회
 	 * 
 	 * @param request
 	 * @return
@@ -51,7 +49,7 @@ public class PgmBoderController {
 
 		//Map<String, Object> map = new HashMap<String, Object>();
 		
-		System.out.println(params.toString());
+		System.out.println("파람::" + params.toString());
 
 		List<Map<String, Object>> pgmBordList = pgmBoderServiceImpl.selectPgmBordList(params);
 
@@ -83,12 +81,11 @@ public class PgmBoderController {
 		
 		mav.setViewName("pgmBoder/pgmBordDtl");
 		return mav;
-
 	}
 	
 	
 	/**
-	 *  프로그램 보드 신규 페이지 조회
+	 *  프로그램 보드 신규 페이지 호출
 	 * 
 	 * @param map
 	 * @return
@@ -102,12 +99,10 @@ public class PgmBoderController {
 		
 		mav.setViewName("pgmBoder/pgmBordDtlNew");
 		return mav;
-		
-
 	}
 	
 	/**
-	 *  프로그램 보드 상세 저장
+	 *  프로그램 보드 신규 저장
 	 * 
 	 * @param map
 	 * @return
@@ -116,10 +111,6 @@ public class PgmBoderController {
 	@Transactional
 	@RequestMapping("pgm_bord_dtl_save")
 	public String savePgmBordDtlSave(@RequestParam Map<String, Object> params) throws Exception {
-
-		ModelAndView mav = new ModelAndView();
-		
-		
 		System.out.println("내용::"+ params.toString());
 		
 		pgmBoderServiceImpl.savePgmBordDtlSave(params);
@@ -128,9 +119,8 @@ public class PgmBoderController {
 
 	}
 	
-	
 	/**
-	 *  프로그램 보드 상세 수정
+	 *  프로그램 보드 수정
 	 * 
 	 * @param map
 	 * @return

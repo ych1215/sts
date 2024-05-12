@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.bord.biz.UserDTO;
-
 @Mapper
 public interface PgmBorderMapper {
 
@@ -14,6 +12,4 @@ public interface PgmBorderMapper {
 	public Map<String, Object> selectPgmBordDtl(Map<String, Object> map);
 	public int savePgmBordDtlSave(Map<String, Object> map);
 	public int savePgmBordDtlUpdate(Map<String, Object> map);
-	
-
 }
