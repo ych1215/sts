@@ -57,7 +57,7 @@ public class PgmBoderController {
 
 		mav.addObject("pgmBordList", pgmBordList);
 
-		mav.setViewName("pgmBordList");
+		mav.setViewName("pgmBoder/pgmBordList");
 		return mav;
 
 	}
@@ -81,7 +81,7 @@ public class PgmBoderController {
 
 		mav.addObject("pgmBordDtl", pgmBordDtl);
 		
-		mav.setViewName("pgmBordDtl");
+		mav.setViewName("pgmBoder/pgmBordDtl");
 		return mav;
 
 	}
@@ -100,7 +100,7 @@ public class PgmBoderController {
 
 		ModelAndView mav = new ModelAndView();
 		
-		mav.setViewName("pgmBordDtlNew");
+		mav.setViewName("pgmBoder/pgmBordDtlNew");
 		return mav;
 		
 
@@ -124,7 +124,7 @@ public class PgmBoderController {
 		
 		pgmBoderServiceImpl.savePgmBordDtlSave(params);
 		
-		return "redirect:/pgm_bord";
+		return "redirect:pgm_bord";
 
 	}
 	
@@ -139,15 +139,12 @@ public class PgmBoderController {
 	@Transactional
 	@RequestMapping("pgm_bord_dtl_update")
 	public String savePgmBordDtlUpdate(@RequestParam Map<String, Object> params) throws Exception {
-
-		ModelAndView mav = new ModelAndView();
-		
 		
 		System.out.println("내용::"+ params.toString());
 		
 		pgmBoderServiceImpl.savePgmBordDtlUpdate(params);
 		
-		return "redirect:/pgm_bord";
+		return "redirect:pgm_bord";
 
 	}
 
