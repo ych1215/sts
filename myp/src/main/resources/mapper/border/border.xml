@@ -34,7 +34,7 @@
 
 	<update id="saveSummernoteBord" parameterType="Map">
 
-		INSERT INTO YCH_LOGIN_INFO
+		INSERT INTO YCH_LOGIN_INFO 
 		(
 		SEQ,
 		BORD ,
