@@ -103,8 +103,9 @@
               <body>
                 <form id="form" name="form">
 
-                  <DIV style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);">
-                    <br><br><br><br><br>
+                  <!-- <DIV style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);"> -->
+                  <DIV style="position: absolute;  left: 50%; transform: translate(-50%);">
+                  
                     <div id="sch">
                       게시판구분
                       <SELECT style="width:150px" name="bordType" id="bordType" class="comboAppr" onchange="changeType(this.value)">

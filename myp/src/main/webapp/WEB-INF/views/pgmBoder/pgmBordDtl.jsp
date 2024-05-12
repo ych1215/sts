@@ -49,7 +49,7 @@
         {
           airMode: false ,             // 툴바 안생기게.. 즉 읽기 전용 , 기본이 true 이므로 {} 없으면 툴바 생김.
           lang: 'ko-KR' ,              // default: 'en-US' 
-          height: 400,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게..
+          height: 590,                 // set editor height // 높이를 주지 않고 글 내용 다 나오게..
           minHeight: null,             // set minimum height of editor
           maxHeight: null,             // set maximum height of editor
           focus: true                  // set focus to editable area after initializing summe
@@ -87,7 +87,8 @@
 <body>
   <form id="form" name="form">
 
-    <div id="war" style="position: absolute; top:40%; left: 50%; transform: translate(-50%, -50%);">
+     <!-- <DIV style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);"> -->
+    <div id="war" style="position: absolute;  left: 50%; transform: translate(-50%);">
 
       <br>
       <div id="sch">
