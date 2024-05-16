@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="624" Id="CRCIMIBQ1201P" Left="8" OnLoadCompleted="ff_commonInit" OnSize="CRCIMIBQ1201P_OnSize" PidAttrib="7" Title="녹취파일청취" TooltipFont="Default,0" Top="8" Ver="1.0" Width="776" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="ds_dpstnFilePath">
+				<Contents>
+					<colinfo id="ext_num" size="256" summ="default" type="STRING"/>
+					<colinfo id="call_sta_dtm" size="256" summ="default" type="STRING"/>
+					<colinfo id="err_cd" size="256" summ="default" type="STRING"/>
+					<colinfo id="err_msg_ctt" size="256" summ="default" type="STRING"/>
+					<colinfo id="dpstn_file_path_nm" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="ds_dgtlInstlAvailYn">
+				<Contents>
+					<colinfo id="code" size="256" summ="default" type="STRING"/>
+					<colinfo id="codeNm" size="256" summ="default" type="STRING"/>
+					<record>
+						<code></code>
+						<codeNm>전체</codeNm>
+					</record>
+					<record>
+						<code>1</code>
+						<codeNm>승인</codeNm>
+					</record>
+					<record>
+						<code>2</code>
+						<codeNm>합의자</codeNm>
+					</record>
+					<record>
+						<code>3</code>
+						<codeNm>반려자</codeNm>
+					</record>
+					<record>
+						<code>4</code>
+						<codeNm>참조자</codeNm>
+					</record>
+					<record>
+						<code>5</code>
+						<codeNm>기안자</codeNm>
+					</record>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Height="21" Id="stc_maintitle" Left="24" Style="st_maintitle" TabOrder="1" Text="녹취파일청취" Top="9" Width="128"></Static>
+		<Image Align="Left" Color="user0" Font="굴림,12,Bold" Height="13" Id="img_icoCnsl" ImageID="ico_title02" Left="5" LeftMargin="30" TabOrder="2" Text="스타일_01[]" Top="10" VAlign="Top" Width="13"></Image>
+		<AxMSIE Bottom="160" DocumentComplete="AxMSIE0_DocumentComplete" Height="120" Id="AxMSIE0" Right="516" TitleChange="AxMSIE0_TitleChange" Top="40" Width="516"></AxMSIE>
+		<Button Height="64" Id="Button0" Left="552" OnClick="Button0_OnClick" TabOrder="4" Text="Button0" Top="32" Width="109"></Button>
+		<Button Height="51" Id="Button1" Left="562" OnClick="Button1_OnClick" TabOrder="5" Text="Button1" Top="130" Width="92"></Button>
+		<WebBrowser Height="80" Id="WebBrowser0" Left="8" TabOrder="6" Top="176" Width="485"></WebBrowser>
+		<Radio BKColor="WINDOW" Border="SunkenEdge" CodeColumn="code" Column="1" ColumnCount="6" DataColumn="codeNm" Height="40" Id="rdo_dgtlInstlAvailYn" INDEX="0" InnerDataset="ds_dgtlInstlAvailYn" Left="8" Style="st_radio_d" TabOrder="7" Top="288" Width="584"></Radio>
+		<Edit Height="29" Id="Edit0" Left="40" TabOrder="8" Text="Edit0" Top="368" Width="187"></Edit>
+		<Grid BkColor2="default" BoldHead="true" Bottom="601" Enable="true" EndLineColor="default" Height="196" Id="Grid0" InputPanel="FALSE" Left="38" LineColor="default" Right="228" TabOrder="9" TabStop="true" Top="405" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="190"></Grid>
+		<Button Height="43" Id="Button2" Left="581" OnClick="Button2_OnClick" TabOrder="10" Text="크기&#32;조절" Top="223" Width="110"></Button>
+	</Form>
+	<Script><![CDATA[/*
+* 프로그램명: 녹취파일청취
+* 프로그램(화면)ID: CRCIMIBQ1201P
+* 작성자 : 김진우
+* 작성일 : 2011-08-19
+* 설  명 : 녹취파일을 청취함
+****************************************************************************
+* 수정일1 :
+* 수정자  :
+* 수정내용:
+****************************************************************************
+/***************************************************************************/
+/* 	1. Include 선언														   */
+/***************************************************************************/
+#include "LIB::SYSLIB0010.js";
+
+/***************************************************************************/
+/* 	2. 폼변수선언														   */
+/***************************************************************************/
+
+var fv_dpstnId;
+var pv_dpstnId;
+var fv_cnslNum;
+var pv_cnslNum;
+
+/***************************************************************************/
+/* 	3. Form Init															   */
+/***************************************************************************/
+/*
+	기능 : 초기화 
+*/
+function ff_commonInit()
+{
+	rdo_qryStdSvc.Index = 1; 
+	//sysf_OnloadInitPopup(this); //popup 폼
+}
+
+
+
+
+
+
+
+function AxMSIE0_DocumentComplete(obj,pDisp,URL)
+{
+	//this.close();
+}
+
+function Button0_OnClick(obj)
+{
+	
+	var PostData = TextToBin("aaa=111");  //TextToBin을 해 주어야 Post로 정상적으로 전달됨
+	//alert(PostData);
+	
+	var Headers = "Content-Type: application/x-www-form-urlencoded";
+	
+	AxMSIE0.Navigate("http://localhost:8089/pgmBord", "", "", PostData, Headers);
+	//AxMSIE0.Navigate("http://localhost:8089/pgmBord");
+	
+	WebBrowser0.PageUrl= "http://localhost:8089/pgmBord";
+	WebBrowser0.Run();
+	
+	
+}
+
+// jsp에서 타이틀 변경하면 이 함수가 호출 된다.  ==>> document.title = "xxxxxxx";
+var chk=0;
+function AxMSIE0_TitleChange(obj,Text)
+{
+	//fn_GetValue();
+
+	//alert(chk++);
+	
+	//alert(Text);	
+	//alert(chk);
+	chk++;
+	//alert(chk);
+	
+	//if( chk == 1) {	//TitleChange 벤트 2번 일어나는것 처리.. 
+			 fn_GetValue();		 
+	//} 
+	
+}
+
+// jsp  의 콤퍼넌트 값 읽기 
+function fn_GetValue()
+{	
+	var objDocument = AxMSIE0.Document;
+	var objHtmlElementCollection = objDocument.All();
+	var Item0;
+	Item0 = objHtmlElementCollection.item("schNm");
+	alert(Item0.value );
+	
+}
+
+
+// jsp 콤포넌트에 값 셋팅
+function Button1_OnClick(obj)
+{
+	var objDocument = AxMSIE0.Document;
+	var objHtmlElementCollection = objDocument.All();	
+	var Item0;
+	Item0 = objHtmlElementCollection.item("schNm");
+	Item0.value = "AA";
+}
+
+function Button2_OnClick(obj)
+{
+	//AxMSIE0.Top = "0";
+	//AxMSIE0.Left = "0";
+	
+	//alert(AxMSIE0.Height);
+	//alert(AxMSIE0.Width);
+	
+	//AxMSIE0.Height = "990";
+	//AxMSIE0.Width	= "1200";
+
+}
+
+function CRCIMIBQ1201P_OnSize(obj,nCx,nCy,nState)
+{
+		AxMSIE0.Height = nCy/2;
+	AxMSIE0.Width	= nCx/2;
+}
+]]></Script>
+</Window>
