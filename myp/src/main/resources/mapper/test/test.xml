@@ -3,6 +3,36 @@
 
 <mapper namespace="com.test.dao.TestMapper">
 
+	<resultMap id="bordClobResultMap" type="Map">
+		<result property="cont" column="cont" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="seq" column="tel" />
+	</resultMap>
+
+	<select id="selectClob" parameterType="Map"	resultMap="bordClobResultMap">
+		SELECT  <![CDATA[REPLACE(REPLACE(REPLACE(BORD_CLOB, CHR(13), ''), CHR(10),   '<br/>'  ), ' ', '&nbsp;') ]]>  as cont
+		,seq as seq
+		FROM YCH_LOGIN_INFO
+		WHERE seq = ( SELECT NVL(MAX(SEQ), 1) FROM YCH_LOGIN_INFO )
+	</select>
+	
+		<update id="insertClob" parameterType="Map">
+
+		INSERT INTO YCH_LOGIN_INFO
+		(
+		SEQ,
+		BORD_CLOB ,
+		CREATE_DT
+		)
+		VALUES
+		(
+		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM YCH_LOGIN_INFO ),
+		#{clob},
+		sysdate
+		)
+
+	</update>
+
+
 	<select id="selectUserList" parameterType="Map" resultType="Map">
 		/* tst */
 		SELECT 'test' as test
@@ -23,6 +53,7 @@
 		)
 
 	</update>
+	
 
 
 </mapper>

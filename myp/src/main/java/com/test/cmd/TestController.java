@@ -1,11 +1,13 @@
 package com.test.cmd;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.biz.TestService;
@@ -91,6 +93,31 @@ public class TestController {
 		mav.setViewName("proxy2");
 		
 		return mav;
+	}
+	
+	// clob 저장 후 조회 테스트
+	@RequestMapping("/clob_sch")
+	public ModelAndView clob_sch(@RequestParam Map<String, Object> params) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> clob = testService.selectClob(params);
+
+		System.out.println(clob.toString());
+
+		mav.addObject("clob", clob);
+		mav.setViewName("test/clobWrite");
+		return mav;
+		
+	}
+	
+	@Transactional
+	@RequestMapping("clob_save")
+	public String clob_save(@RequestParam Map<String, Object> params) throws Exception {
+
+		testService.saveClob(params);
+		return  "redirect:clob_sch"; 
+
 	}
 
 

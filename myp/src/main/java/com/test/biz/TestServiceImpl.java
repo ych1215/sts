@@ -27,6 +27,20 @@ public class TestServiceImpl implements TestService {
        return testMapper.insertUser(map);
    }
    
+   @Override
+   public int saveClob(Map<String, Object> map) throws Exception {
+	   
+       return testMapper.insertClob(map);
+   }
+   
+   @Override
+   public Map<String, Object> selectClob(Map<String, Object> map) throws Exception {
+	   
+       return testMapper.selectClob(map);
+   }
+   
+   
+   
    
 }
 

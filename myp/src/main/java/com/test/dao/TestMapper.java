@@ -11,5 +11,10 @@ public interface TestMapper {
 	public List<Map<String, Object>> selectUserList(Map<String, Object> map);
 
 	public int insertUser(Map<String, Object> map);
+	
+	public int insertClob(Map<String, Object> map);
+	
+	public Map<String, Object> selectClob(Map<String, Object> map);
+	
 
 }
