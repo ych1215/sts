@@ -82,6 +82,31 @@
 
 
               <script>
+              
+                //  서버에서 보내 해더 읽고 서버로 해더 보내기 
+				function call() {
+				  console.log('Function call started');
+				  fetch('/pgm_bord', {
+				    method: 'GET',
+				    headers: {
+				      'ychcilnet-aaa': 'your-header-value' // 해더 보내기
+				    }
+				  })
+				  .then(function(response) {
+				    if (response.ok) {
+				      response.headers.forEach(function(value, key) {
+				        console.log(key + ': ' + value); // 해더 읽기 
+				      });
+				    } else {
+				      console.error('Request failed with status: ' + response.status);
+				    }
+				  })
+				  .catch(function(error) {
+				    console.error('Fetch error:', error);
+				  });
+				  console.log('Function call finished');
+				}
+  
 
                  // 조회
                  function fnSch() {
@@ -119,6 +144,7 @@
                       키워드 : 
                       <input name="keyWord" id="keyWord" type="input" size="50" value="">
                       <input name="schButton" id="schButton" type="BUTTON" value="검색" onClick="fnSch()">
+                       <input name="schButton2" id="schButton2" type="BUTTON" value="해더보내기" onClick="call()">
                     </div>
 
                     <input name="new" id="new" type="BUTTON" value="등록" onClick="fnNew()">

@@ -5,6 +5,11 @@
 
 <a href="pgm_bord" >프로그램 게시판 NEW </a> <br><br>
 
+<a href="file" >파일업로드 다건 1</a> <br>
+<a href="file2">파일업로드 다건 2</a> <br>
+<a href="str">리퀘스트객체  request.getReader() 로읽기 </a> <br>
+
+
 <a href="/clob_sch" >clob 뷰 테스트</a> <br>
 <a href="pgmBord" >프로그램 게시판</a> <br>
 <a href="appr" >승인처리 (jquery)</a> <br>

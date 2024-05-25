@@ -1,5 +1,6 @@
 package com.pgmBord.cmd;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +55,19 @@ public class PgmBoderController {
 		List<Map<String, Object>> pgmBordList = pgmBoderServiceImpl.selectPgmBordList(params);
 
 		mav.addObject("pgmBordList", pgmBordList);
+		
+		// 클라이언트에서 보낸 해더 읽기 
+		 StringBuilder sb = new StringBuilder();
+	        Enumeration<String> headerNames = request.getHeaderNames();
+	        while (headerNames.hasMoreElements()) {
+	            String name = headerNames.nextElement();
+	            String value = request.getHeader(name);
+	            sb.append(name + ": " + value + "\n");
+	        }
+	        System.out.println("해더::" + sb.toString());
+	        
+		
+		 response.addHeader("ych-serverheader", "Hello from Spring!"); // 클라이언트로 해더 보내기.
 
 		mav.setViewName("pgmBoder/pgmBordList");
 		return mav;

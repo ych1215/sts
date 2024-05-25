@@ -119,6 +119,40 @@ public class TestController {
 		return  "redirect:clob_sch"; 
 
 	}
+	
+	@Transactional
+	@RequestMapping(value = "file")
+	public ModelAndView file(Map<String, Object> map) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/test/fileTest");
+		return mav;
+
+	}
+	
+	@Transactional
+	@RequestMapping(value = "file2")
+	public ModelAndView file2(Map<String, Object> map) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/test/fileTest2");
+		return mav;
+
+	}
+	
+	@Transactional
+	@RequestMapping(value = "str")
+	public ModelAndView process(Map<String, Object> map) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/test/fileTest3");
+		return mav;
+
+	}
+
 
 
 }
