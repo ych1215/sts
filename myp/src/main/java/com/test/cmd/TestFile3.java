@@ -21,6 +21,26 @@ public class TestFile3 extends HttpServlet {
     @RequestMapping(value = "filetest3")
     public ModelAndView filetest(Map<String, Object> map,   HttpServletRequest request , HttpServletResponse response) throws Exception {
     	
+    	/* 
+    	 //  <form action="/filetest3" method="get"> 방식으로 했을때
+    	 String queryString = request.getQueryString(); // Get query string from URL
+    	 System.out.println("nick::" +queryString); // 파라미터 json 받기
+    	 
+    	    Map<String, String> queryParams = new HashMap<>(); // Create a map to store key-value pairs
+
+    	    if (queryString != null) {
+    	        String[] params = queryString.split("&"); // Split query string into key-value pairs
+    	        for (String param : params) {
+    	            String[] pair = param.split("="); // Split each pair into key and value
+    	            if (pair.length == 2) {
+    	                queryParams.put(pair[0], pair[1]); // Add key-value pair to the map
+    	            }
+    	        }
+    	    }
+		 */
+    	
+    	    
+		
     	 // 1. BufferedReader를 사용하여 요청 본문을 읽습니다.
         BufferedReader reader = request.getReader();
         String line;
@@ -50,6 +70,7 @@ public class TestFile3 extends HttpServlet {
         out.println("<p>" + formData + "</p>");
         out.println("</body>");
         out.println("</html>");
+    	   
 		return null;
     }
 
