@@ -1,5 +1,6 @@
 package com.vue3.cmd;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,18 +14,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vue3.biz.EmpServiceImpl;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class EmpController {
+	
+	@Resource
+	EmpServiceImpl empService;
+
 
     @CrossOrigin(origins = "*")
-    @PostMapping(value = "/empSch")
-    public HashMap<String, Integer> getUsers(@RequestBody Map<String, Object> requestBody) {
-        HashMap<String, Integer> scores = new HashMap<>();
+    @RequestMapping(value = "/empSch", method = RequestMethod.POST)
+    public List getUsers(@RequestBody Map<String, Object> requestBody) throws Exception {
+       
+    	
+    	
+    	HashMap<String, Object> parm = new HashMap<>();
+    	
+    	List<Map<String, Object>> empList = new ArrayList<Map<String, Object>>();
+    	
+    	
 
         // 요청 본문에서 데이터 추출
         String empNm = (String) requestBody.get("empNm");
@@ -37,11 +51,24 @@ public class EmpController {
         System.out.println("empOjb: " + empOjb);
 
         // 키와 값 저장
+        HashMap<String, Object> scores = new HashMap<>();
         scores.put("John Doe", 90);
         scores.put("Jane Doe", 80);
         scores.put("John Smith", 70);
+        
+        
+        empList.add(scores);
+        
+        HashMap<String, Object> scores2 = new HashMap<>();
+        scores2.put("John Doe", 90);
+        scores2.put("Jane Doe", 80);
+        scores2.put("John Smith", 70);
+        empList.add(scores2);
+        
+        parm.put("empNm", empNm);
+        List<Map<String, Object>> empList2 = empService.selectUserList(parm);
 
-        return scores;
+        return empList2;
     }
 	
 	@CrossOrigin(origins = "*")
@@ -75,4 +102,23 @@ public class EmpController {
 
         return scores;
     }
+	
+	
+	 @CrossOrigin(origins = "*")
+	    @RequestMapping(value = "/insertEmp", method = RequestMethod.POST)
+	    public void insertEmp(@RequestBody Map<String, Object> requestBody) throws Exception {
+	       
+	    	HashMap<String, Object> parm = new HashMap<>();
+	    	
+	    	  List<Map<String, Object>> empList = (List<Map<String, Object>>) requestBody.get("empList");
+	    	  
+	    	  Map<String, Object> map = null;
+	    	  
+	    	 for (int i=0; i<empList.size(); i++) {
+	    		 map = empList.get(i);
+	    		 if ("I".equals((String)map.get("ROWTYPE"))) {
+	    			 empService.insertEmp(map);
+	    		 }
+	    	 }
+	    }
 }

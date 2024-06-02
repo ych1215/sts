@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vue3.dao.EmpMapper">
+
+
+	
+
+
+	<select  id="selectUserList" parameterType="Map" resultType="Map">
+		
+		SELECT SEQ , TITLE , EMP_NM , KEYWORD , DATEA , 'R' AS ROWTYPE
+		 FROM VUE_EMP_BORD_LIST
+		WHERE 1=1
+		
+		 <if test="empNm != null and empNm != ''  ">
+			AND  EMP_NM =  #{empNm}
+		  </if>	 
+			 
+		 
+	</select>
+	
+	
+			<update id="insertEmp" parameterType="Map">
+
+		INSERT INTO VUE_EMP_BORD_LIST
+		(
+	      SEQ , TITLE , EMP_NM , KEYWORD , DATEA , ROWTYPE
+		)
+		VALUES
+		(
+		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM VUE_EMP_BORD_LIST ),
+		#{TITLE},
+		#{EMP_NM},
+		#{KEYWORD},
+		#{DATEA},
+		#{ROWTYPE}
+		
+		)
+
+	</update>
+	
+
+
+</mapper>
+

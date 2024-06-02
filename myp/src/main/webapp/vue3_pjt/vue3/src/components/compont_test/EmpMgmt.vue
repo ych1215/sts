@@ -4,16 +4,18 @@
 
   <div class="empSch">
   사원명 <input name="empSch" v-model="empNm" type="text" value="" >     
-  <input name="btnSave"  type="BUTTON" value="조회" @click="fnEmpSch">
+  <input name="btnSave"  type="BUTTON" value="조회" @click="fnEmpSch"> 
     <input name="btnSave"  type="BUTTON" value="조회_get방식" @click="fnEmpSch_GET">
   </div>
   <h1></h1>
   
   <div class="empSch">
-  구분 <input name="empSch" v-model="gubun" type="text" value="" >  
-  키워드 <input name="empSch" v-model="keyword" type="text" value="" >  
-  제목 <input name="empSch" v-model="title" type="text" value="" >  
+  구분<input name="empSch" v-model="gubun" type="text" value="" >  
+  키워드 <input name="empSch" v-model="keyword" type="text" value="" >   <br>
+  제목<input name="empSch" v-model="title" type="text" value="" >  
+  등록일자 <input name="empSch" v-model="title" type="text" value="" >   <br> <br>
     <input name="btnSave"  type="BUTTON" value="저장" @click="fnSave">
+     <input name="btnSave"  type="BUTTON" value="추가" @click="fnAdd">
   </div>
 
   <div>
@@ -21,29 +23,33 @@
    <table class="party_tbl_new" width="100%" cellspacing="0" cellpadding="0">
                         <tr height="40">
                         <th width="5%" height="20">순번</th>
-                        <th width="10%">구분</th>
+                        <th width="10%">사원명</th>
                         <th width="20%">키워드</th>
-                        <th width="55%">제목</th>
-                        <th width="15%" class="border_last">등록일자</th>
+                        <th width="45%">제목</th>
+                        <th width="10%" class="">등록일자</th>
+                        <th width="10%" class="border_last">로우타임</th>
                       </tr>
-                               <tr>
+                             <tr v-for="(emp, index) in empList" :key="emp.SEQ" @click="selectEmp(emp)">
                           <td height="20" class="seq">
                             <a href="#" >
-                           SEQ
+                           {{emp.SEQ}}
                             </a>
                         
                           </td>
                           <td>
-                           BORD_TYPE
+                            {{emp.EMP_NM}}
                           </td>
                           <td>
-                          KEYWORD
+                          {{emp.KEYWORD}}
                           </td>
                           <td style="text-align: left;">
-                           TITLE
+                            {{emp.TITLE}}
                           </td>
-                          <td class="border_last">
-                           CREATE_DT
+                          <td class="">
+                            {{emp.DATEA}}
+                          </td>
+                           <td class="border_last">
+                            {{emp.ROWTYPE}}
                           </td>
                         </tr>
                     </table>
@@ -93,7 +99,6 @@ export default {
           console.log(error);
         });
     },
-  
 
       fnEmpSch(event) {
       var emp_list = this;
@@ -119,9 +124,48 @@ export default {
     
 
     fnSave() {
-      // 구현해야 하는 로직이 있다면 여기에 추가하세요.
-    }
+     
+     var emp_list = this;
+
+      // JSON 형식의 데이터를 요청 본문에 포함
+      let data = {       
+
+        empList: emp_list.empList
+      };
+
+      axios
+        .post("http://localhost:8089/insertEmp", data)
+        .then(function (response) {
+          console.log(response.data);
+          emp_list.empList = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+          alert(error);
+        });
+
+    },
+
+     fnAdd() {
+
+     
+      var size = this.empList.length;
+
+      this.empList.push({ SEQ: size +1 , EMP_NM: '홍길동'+size , KEYWORD: 'bb'  , TITLE: 'bb'  , DATEA: 'bb', ROWTYPE:'I'});
+      console.log(this.empList);
+    } ,
+
+     selectEmp(emp) {
+      this.gubun = emp.EMP_NM;
+      this.keyword = emp.KEYWORD;
+      this.title = emp.TITLE;
+      this.datea = emp.DATEA;
+    },
+
   },
+   
+
+
 };
 </script>
 
