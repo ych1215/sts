@@ -20,6 +20,16 @@
     <button v-on:click.shift="doaaa"> 버튼 </button>
     <hr color='pink' size='3'></hr>
 
+    mousemove 이벤트 <br>
+    <div v-on:mousemove="trackingMouse" class="screen">
+        {{ mouse.x }}, {{ mouse.y }}
+      </div>
+    <hr color='pink' size='3'></hr>
+
+    :bind 로  size, maxlength 값 연결 <br>
+    <input type="text"  v-bind:size="size" v-bind:maxlength="maxlength">
+    <hr color='pink' size='3'></hr>
+
     </div>
   </div>
 </template>
@@ -34,6 +44,12 @@ export default {
       return {   
        message: 'Hello Vue.js',
         message2: 'Hello Vue.js',
+        size :  100,
+        maxlength:  2,
+        mouse: {
+            x: 0,
+            y: 0
+          },
        
     }
   },
@@ -60,6 +76,11 @@ export default {
           this.message = event.target.value
           alert(this.message);
         },
+         trackingMouse: function (event) {
+          //debugger;
+            this.mouse.x = event.clientX;
+            this.mouse.y = event.clientY;
+          } ,
         
 
   }
@@ -77,4 +98,11 @@ h2 {
 #conts {
   text-align: left;
 }
+
+ .screen {
+        width: 100%;
+        height: 100px;
+        background-color: #DDD;
+      }
+
 </style>

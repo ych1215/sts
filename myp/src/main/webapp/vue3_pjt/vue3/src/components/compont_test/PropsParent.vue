@@ -70,6 +70,7 @@ export default {
     width: 500px;
     height: 500px;
     background-color: rgb(0, 255, 17);   
+    margin: 0px auto; 
 }
 
 </style>

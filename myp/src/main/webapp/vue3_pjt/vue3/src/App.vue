@@ -19,7 +19,7 @@
           <div id="menu">
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/ComponentSample">콤퍼넌트 예제</router-link></li>
-          <li><router-link to="/EventSample">이벤트 예제</router-link></li>
+          <li><router-link to="/EventSample">이벤트, bind 예제</router-link></li>
           <li><router-link to="/axios">axios 예제</router-link></li>
           <li><router-link to="/PropsParent">props , emits 예제</router-link></li>
          
