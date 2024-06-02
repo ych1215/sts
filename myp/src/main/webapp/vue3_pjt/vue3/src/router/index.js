@@ -7,7 +7,7 @@ import ComponentSample from '../components/compont_test/ComponentSample.vue'
 import EventSample from '../components/compont_test/EventSample.vue'
 import axios from '../components/compont_test/axios.vue'
 import PropsParent from '../components/compont_test/PropsParent.vue'
-
+import EmpMgmt from '../components/compont_test/EmpMgmt.vue'
 
 
 const routes = [
@@ -41,6 +41,13 @@ const routes = [
     component: PropsParent
   }
   ,
+  {
+    path: '/EmpMgmt',
+    name: 'EmpMgmt',
+    component: EmpMgmt
+  }
+  ,
+  
 
   
   

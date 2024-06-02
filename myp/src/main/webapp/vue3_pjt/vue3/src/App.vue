@@ -22,6 +22,7 @@
           <li><router-link to="/EventSample">이벤트, bind 예제</router-link></li>
           <li><router-link to="/axios">axios 예제</router-link></li>
           <li><router-link to="/PropsParent">props , emits 예제</router-link></li>
+          <li><router-link to="/EmpMgmt">사원관리</router-link></li>
          
           </div>
 
@@ -74,14 +75,14 @@ export default {
         border: 1px solid #bcbcbc;
       }
       #jb-content {
-        width: 880px;
+        width: 74%;
         padding: 10px;
         margin-bottom: 20px;
         float: right;
         border: 1px solid #bcbcbc;
       }
       #jb-sidebar {
-        width: 145px;
+        width: 19%;
         padding: 20px;
         margin-bottom: 20px;
         float: left;
