@@ -16,6 +16,7 @@
 		 <if test="empNm != null and empNm != ''  ">
 			AND  EMP_NM =  #{empNm}
 		  </if>	 
+		  ORDER BY SEQ DESC
 			 
 		 
 	</select>
