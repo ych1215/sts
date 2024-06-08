@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>사원등록</h2>
+    <h4>사원등록</h4>
   </div>
 </template>
 
