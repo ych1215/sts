@@ -14,9 +14,14 @@
   키워드 <input name="empSch" v-model="keyword" type="text" value="" >   <br>
   제목<input name="empSch" v-model="title" type="text" value="" >  
   등록일자 <input name="empSch" v-model="title" type="text" value="" >   <br> <br>
+    
+    <div id="empButton">
+    
     <input name="btnSave"  type="BUTTON" value="저장" @click="fnSave">
      <input name="btnAdd"  type="BUTTON" value="추가" @click="fnAdd">
-     <input name="btnNew"  type="BUTTON" value="신규등록" @click="fnNew">
+     <input name="btnNew"  type="BUTTON" value="신규등록" @click="fnNew">     
+    
+     </div>
   </div>
 
   <div>
@@ -163,7 +168,8 @@ export default {
     },
 
      fnNew() {
-
+       // window.location.href = '/EmpNew';
+       this.$router.push('/EmpNew');
      } ,
 
   },
@@ -185,6 +191,8 @@ h2 {
 
   border: 1px solid #44df25;
   text-align: left;
+  position: relative;
+
 }
 
  .party_tbl_new {
@@ -214,6 +222,15 @@ h2 {
                   .border_last {
                     border-right: 1px solid #bbbbbb;
                   }
+
+
+#empButton {  
+  border: 1px solid #15d335;
+  position: absolute; 
+  right: 0px;  
+  top: 54px;
+}
+
 
 
 </style>

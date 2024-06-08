@@ -8,6 +8,7 @@ import EventSample from '../components/compont_test/EventSample.vue'
 import axios from '../components/compont_test/axios.vue'
 import PropsParent from '../components/compont_test/PropsParent.vue'
 import EmpMgmt from '../components/compont_test/EmpMgmt.vue'
+import EmpNew from '../components/compont_test/EmpNew.vue'
 import CompositionApi from '../components/compont_test/CompositionApi.vue'
 import Menu from '../components/compont_test/Menu.vue'
 
@@ -63,7 +64,12 @@ const routes = [
     component: Menu
   }
   ,
-  
+  {
+    path: '/EmpNew',
+    name: 'EmpNew',
+    component: EmpNew
+  }
+  ,
 ]
 
 const router = createRouter({

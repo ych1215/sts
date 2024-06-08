@@ -12,7 +12,7 @@
         <router-link to="/CompositionApi">Composition Api 예제</router-link>
       </li>
       <li><router-link to="/EmpMgmt">사원관리</router-link></li>
-      <li><router-link to="/EmpNew">사원신규등록</router-link></li>
+      
     </div>
   </ul>
 </template>

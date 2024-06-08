@@ -17,7 +17,7 @@
         <Menu/>
       </div>
       <div id="jb-footer">
-        <h5>Copyright</h5>
+        <h7>Copyright</h7>
       </div>
     </div>
  
