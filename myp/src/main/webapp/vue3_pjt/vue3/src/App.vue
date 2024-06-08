@@ -79,14 +79,14 @@ export default {
       #jb-content {
         width: 74%;
         padding: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         float: right;
         border: 1px solid #bcbcbc;
       }
       #jb-sidebar {
         width: 19%;
         padding: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         float: left;
         border: 1px solid #bcbcbc;
       }
