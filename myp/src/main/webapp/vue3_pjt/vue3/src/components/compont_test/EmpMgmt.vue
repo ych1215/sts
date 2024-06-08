@@ -16,7 +16,7 @@
   등록일자 <input name="empSch" v-model="title" type="text" value="" >   <br> <br>
     <input name="btnSave"  type="BUTTON" value="저장" @click="fnSave">
      <input name="btnAdd"  type="BUTTON" value="추가" @click="fnAdd">
-     <input name="btnNew"  type="BUTTON" value="추가" @click="fnNew">
+     <input name="btnNew"  type="BUTTON" value="신규등록" @click="fnNew">
   </div>
 
   <div>
@@ -139,6 +139,7 @@ export default {
         .then(function (response) {
           console.log(response.data);
           emp_list.empList = response.data;
+          emp_list.fnEmpSch();
         })
         .catch(function (error) {
           console.log(error);
@@ -148,6 +149,10 @@ export default {
     },
 
      fnAdd() {
+        var size = this.empList.length;
+
+      this.empList.push({ SEQ: size +1 , EMP_NM: '홍길동'+size , KEYWORD: 'bb'  , TITLE: 'bb'  , DATEA: 'bb', ROWTYPE:'I'});
+      console.log(this.empList);
     } ,
 
      selectEmp(emp) {

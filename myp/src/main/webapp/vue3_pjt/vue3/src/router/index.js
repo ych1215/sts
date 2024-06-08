@@ -9,6 +9,7 @@ import axios from '../components/compont_test/axios.vue'
 import PropsParent from '../components/compont_test/PropsParent.vue'
 import EmpMgmt from '../components/compont_test/EmpMgmt.vue'
 import CompositionApi from '../components/compont_test/CompositionApi.vue'
+import Menu from '../components/compont_test/Menu.vue'
 
 
 
@@ -56,8 +57,12 @@ const routes = [
     component: CompositionApi
   }
   ,
-
-  
+  {
+    path: '/Menu',
+    name: 'Menu',
+    component: Menu
+  }
+  ,
   
 ]
 
