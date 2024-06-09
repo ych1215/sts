@@ -10,10 +10,10 @@
   <h1></h1>
   
   <div class="empSch">
-  사원명<input name="empSch" v-model="gubun" type="text" value="" >  
-  성별 <input name="empSch" v-model="keyword" type="text" value="" >   <br>
-  직급<input name="empSch" v-model="title" type="text" value="" >  
-  입사일자 <input name="empSch" v-model="datea" type="text" value="" >   <br> <br>
+  사원명<input name="empSch" v-model="NAME" type="text" value="" >  
+  성별 <input name="empSch" v-model="RDO" type="text" value="" >   <br>
+  직급<input name="empSch" v-model="SELECTV" type="text" value="" >  
+  입사일자 <input name="empSch" v-model="ENTERING_DATE" type="text" value="" >   <br> <br>
     
     <div id="empButton">
     
@@ -31,8 +31,10 @@
                         <th width="5%" height="20">순번</th>
                         <th width="10%">사원명</th>
                         <th width="20%">성별</th>
-                        <th width="40%">직급</th>
+                        <th width="20%">직급</th>
+                     
                         <th width="15%" class="">입사일자</th>
+                        <th width="5%" class="">나이</th>
                         <th width="10%" class="border_last">로우타임</th>
                       </tr>
                              <tr class="trtr" v-for="(emp, index) in empList" :key="emp.SEQ" @click="selectEmp(emp)">
@@ -45,14 +47,18 @@
                           <td>
                             {{emp.NAME}}
                           </td>
-                          <td>
-                          {{emp.RDO}}
+                         
+                           <td>
+                         {{emp.RDO}}
                           </td>
                           <td style="text-align: left;">
                             {{emp.SELECTV}}
                           </td>
                           <td class="">
                             {{emp.ENTERING_DATE}}
+                          </td>
+                           <td class="">
+                            {{emp.OLD}}
                           </td>
                            <td class="border_last">
                             {{emp.ROWTYPE}}
@@ -71,11 +77,14 @@ import axios from "axios";
 export default {
   data() {
     return {
-      empNm: "",
+      empNm: "",   // 검색어
+
       list_m: [{a: 'aa', b: 'bbb'}, {a: 'aa', b: 'bbb'}],
-      gubun: "",
-      keyword: "",
-      title: "",
+      NAME: "",
+      RDO: "",
+      SELECTV: "",
+      SEX:"",
+      OLD :  0,
       empOjb: {a: 'aa', b: 'bbb'},
       empList : [],
 
@@ -154,7 +163,7 @@ export default {
         .post("http://localhost:8089/insertEmp", data)
         .then(function (response) {
           console.log(response.data);
-          emp_list.empList = response.data;
+         // emp_list.empList = response.data;
           emp_list.fnEmpSch();
         })
         .catch(function (error) {
@@ -167,15 +176,17 @@ export default {
      fnAdd() {
         var size = this.empList.length;
 
-      this.empList.push({ SEQ: size +1 , NAME: '홍길동'+size , RDO: 'M'  , SELECTV: 'A'  , ENTERING_DATE: '2024-06-09 12:00', ROWTYPE:'I'});
+      this.empList.push({  ENTERING_DATE: '2024-06-09' , JOINING_TIME: '12:00', SELECTV: 'A', OLD:'0' , ROWTYPE:'I' ,  RDO: 'M' ,  SEQ: size +1 , NAME: '홍길동'+size });
+      debugger;
       console.log(this.empList);
     } ,
 
      selectEmp(emp) {
-      this.gubun = emp.NAME;
-      this.keyword = emp.RDO;
-      this.title = emp.SELECTV;
-      this.datea = emp.ENTERING_DATE;
+      this.NAME = emp.NAME;
+       this.SEX = emp.SEX;
+      this.RDO = emp.RDO;
+      this.SELECTV = emp.SELECTV;
+      this.ENTERING_DATE = emp.ENTERING_DATE;
     },
 
      fnNew() {

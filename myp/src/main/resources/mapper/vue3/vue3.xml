@@ -9,7 +9,7 @@
 
 	<select  id="selectUserList" parameterType="Map" resultType="Map">
 		
-		SELECT SEQ , NAME , RDO 
+		SELECT SEQ , NAME , RDO , OLD
 		  , CASE WHEN SELECTV = 'A' THEN '대리'
 		         WHEN SELECTV = 'B' THEN '과장'
 		         WHEN SELECTV = 'C' THEN '부장'
@@ -34,15 +34,11 @@
 
 		INSERT INTO VUE_EMP_BORD_LIST
 		(
-	     SEQ , TITLE , EMP_NM , KEYWORD , DATEA , ROWTYPE , NAME , RDO ,  SELECTV ,OLD , ENTERING_DATE , JOINING_TIME
+	     SEQ , ROWTYPE , NAME , RDO ,  SELECTV ,OLD , ENTERING_DATE , JOINING_TIME
 		)
 		VALUES
 		(
 		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM VUE_EMP_BORD_LIST ),
-		#{TITLE},
-		#{EMP_NM},
-		#{KEYWORD},
-		#{DATEA},
 		#{ROWTYPE} ,
 		
 		#{NAME} ,
