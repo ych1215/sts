@@ -64,7 +64,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 #div_p {
     width: 500px;

@@ -121,4 +121,57 @@ public class EmpController {
 	    		 }
 	    	 }
 	    }
+	 
+
+	    /**
+	     * 사원 신규 저장
+	     * @param requestBody
+	     * @return
+	     * @throws Exception
+	     */
+	    @CrossOrigin(origins = "*")
+	    @RequestMapping(value = "/empNewSave", method = RequestMethod.POST)
+	    public void empNewSave(@RequestBody Map<String, Object> requestBody) throws Exception {
+	    	
+
+	        // 요청 본문에서 데이터 추출
+	        String name = (String) requestBody.get("name");
+	        System.out.println("name: " + name);
+	        
+	        
+	        List<String> chks = new ArrayList<>();
+	        chks = ( List<String>)requestBody.get("chks");
+	        System.out.println("chks: " + chks);
+	        
+	       /// Map<String, Object> chks = (Map<String, Object>) requestBody.get("chks");
+	      
+	        
+	        
+	        String rdo = (String) requestBody.get("rdo");
+	        System.out.println("rdo: " + rdo);
+	        
+	        String selectv = (String) requestBody.get("selectv");
+	        System.out.println("selectv: " + selectv);
+	        
+	        
+	        int old = (int) requestBody.get("old"); // 화면에서 값이없으면 숫자는 0으로 넣어야함. 널체크가 안됨;;;
+	        System.out.println("old: " + old);
+	        
+	        String data1 = (String) requestBody.get("data1");
+	        System.out.println(data1);
+	        
+	        String data2 = (String) requestBody.get("data2");
+	        System.out.println(data2);
+	        
+	        
+	        List<Map<String, Object>> list = (List<Map<String, Object>>) requestBody.get("list");
+	        Map<String, Object> map = (Map<String, Object>) requestBody.get("map");
+
+	        // 출력 확인
+	        System.out.println("list: " + list);
+	        System.out.println("map: " + map);
+
+	    
+
+	    }
 }
