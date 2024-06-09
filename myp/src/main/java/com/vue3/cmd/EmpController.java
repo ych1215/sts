@@ -170,6 +170,24 @@ public class EmpController {
 	        // 출력 확인
 	        System.out.println("list: " + list);
 	        System.out.println("map: " + map);
+	        
+	        
+	        HashMap<String, Object> parm = new HashMap<>();
+			
+		 	parm.put("TITLE", "");
+			parm.put("EMP_NM", "");
+			parm.put("KEYWORD", "");
+			parm.put("DATEA", "");
+			parm.put("ROWTYPE", 'R');
+	        
+	        parm.put("NAME", name);
+	        parm.put("RDO", rdo);
+	        parm.put("SELECTV", selectv);
+	        parm.put("OLD", old);
+	        parm.put("ENTERING_DATE", data1);
+	        parm.put("JOINING_TIME", data2);
+	        
+	        empService.insertEmp(parm);
 
 	    
 

@@ -83,7 +83,21 @@ export default {
 
   methods: {
 
+
+      fnCk(event) {
+          if (this.name == "" ) {
+              alert("이름은 필수 입력 항목 ");
+              return false;
+
+          }
+          return true;
+      },
+
       fnNew(event) {
+
+        if ( this.fnCk() == false ) {
+          return;
+        }
 
         var emp_info = this;
 
@@ -108,11 +122,17 @@ export default {
           .then(function (response) {
             console.log(response.data);
             //emp_list.empList = response.data;
-            emp_info.$router.push('/EmpMgmt');
+           // emp_info.$router.push('/EmpMgmt');
+           emp_info.$router.push({
+            path: '/EmpMgmt',
+            query: { pram1: 'aaaa' } ,
+          
+          });
+
           })
           .catch(function (error) {
             console.log(error);
-            alert(error);
+            alert("에려 메시지::"  + error);
           });
 
     } ,
@@ -161,7 +181,7 @@ export default {
 }
 
 #qqq {
-  margin-left: 80px;
+  margin-left: 43px;
   width: 60px;
 }
 

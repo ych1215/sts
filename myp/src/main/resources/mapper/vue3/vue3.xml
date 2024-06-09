@@ -9,12 +9,20 @@
 
 	<select  id="selectUserList" parameterType="Map" resultType="Map">
 		
-		SELECT SEQ , TITLE , EMP_NM , KEYWORD , DATEA , 'R' AS ROWTYPE
+		SELECT SEQ , NAME , RDO 
+		  , CASE WHEN SELECTV = 'A' THEN '대리'
+		         WHEN SELECTV = 'B' THEN '과장'
+		         WHEN SELECTV = 'C' THEN '부장'
+		         WHEN SELECTV = 'D' THEN '대표이사'
+		     ELSE NULL END AS SELECTV
+		  
+		 , ENTERING_DATE  || ' ' || JOINING_TIME AS ENTERING_DATE  
+		  , 'R' AS ROWTYPE
 		 FROM VUE_EMP_BORD_LIST
 		WHERE 1=1
 		
 		 <if test="empNm != null and empNm != ''  ">
-			AND  EMP_NM =  #{empNm}
+			AND  NAME =  #{empNm}
 		  </if>	 
 		  ORDER BY SEQ DESC
 			 
@@ -26,7 +34,7 @@
 
 		INSERT INTO VUE_EMP_BORD_LIST
 		(
-	      SEQ , TITLE , EMP_NM , KEYWORD , DATEA , ROWTYPE
+	     SEQ , TITLE , EMP_NM , KEYWORD , DATEA , ROWTYPE , NAME , RDO ,  SELECTV ,OLD , ENTERING_DATE , JOINING_TIME
 		)
 		VALUES
 		(
@@ -35,7 +43,17 @@
 		#{EMP_NM},
 		#{KEYWORD},
 		#{DATEA},
-		#{ROWTYPE}
+		#{ROWTYPE} ,
+		
+		#{NAME} ,
+		#{RDO} ,
+		#{SELECTV} ,
+		#{OLD} , 
+		#{ENTERING_DATE} , 
+		#{JOINING_TIME}
+		  
+		
+		
 		
 		)
 

@@ -10,10 +10,10 @@
   <h1></h1>
   
   <div class="empSch">
-  구분<input name="empSch" v-model="gubun" type="text" value="" >  
-  키워드 <input name="empSch" v-model="keyword" type="text" value="" >   <br>
-  제목<input name="empSch" v-model="title" type="text" value="" >  
-  등록일자 <input name="empSch" v-model="title" type="text" value="" >   <br> <br>
+  사원명<input name="empSch" v-model="gubun" type="text" value="" >  
+  성별 <input name="empSch" v-model="keyword" type="text" value="" >   <br>
+  직급<input name="empSch" v-model="title" type="text" value="" >  
+  입사일자 <input name="empSch" v-model="datea" type="text" value="" >   <br> <br>
     
     <div id="empButton">
     
@@ -30,12 +30,12 @@
                         <tr height="40">
                         <th width="5%" height="20">순번</th>
                         <th width="10%">사원명</th>
-                        <th width="20%">키워드</th>
-                        <th width="45%">제목</th>
-                        <th width="10%" class="">등록일자</th>
+                        <th width="20%">성별</th>
+                        <th width="40%">직급</th>
+                        <th width="15%" class="">입사일자</th>
                         <th width="10%" class="border_last">로우타임</th>
                       </tr>
-                             <tr v-for="(emp, index) in empList" :key="emp.SEQ" @click="selectEmp(emp)">
+                             <tr class="trtr" v-for="(emp, index) in empList" :key="emp.SEQ" @click="selectEmp(emp)">
                           <td height="20" class="seq">
                             <a href="#" >
                            {{emp.SEQ}}
@@ -43,16 +43,16 @@
                         
                           </td>
                           <td>
-                            {{emp.EMP_NM}}
+                            {{emp.NAME}}
                           </td>
                           <td>
-                          {{emp.KEYWORD}}
+                          {{emp.RDO}}
                           </td>
                           <td style="text-align: left;">
-                            {{emp.TITLE}}
+                            {{emp.SELECTV}}
                           </td>
                           <td class="">
-                            {{emp.DATEA}}
+                            {{emp.ENTERING_DATE}}
                           </td>
                            <td class="border_last">
                             {{emp.ROWTYPE}}
@@ -81,6 +81,17 @@ export default {
 
     };
   },
+
+   mounted() {
+
+   
+    const yourParameter = this.$route.query.pram1;
+    console.log(yourParameter); // 받은 파라미터 출력
+   // alert(yourParameter);
+    this.fnEmpSch();
+    
+   
+  } ,
 
   methods: {
     
@@ -124,7 +135,7 @@ export default {
         })
         .catch(function (error) {
           console.log(error);
-          alert(error);
+          alert("에러메시지::"+ error);
         });
     },
     
@@ -156,15 +167,15 @@ export default {
      fnAdd() {
         var size = this.empList.length;
 
-      this.empList.push({ SEQ: size +1 , EMP_NM: '홍길동'+size , KEYWORD: 'bb'  , TITLE: 'bb'  , DATEA: 'bb', ROWTYPE:'I'});
+      this.empList.push({ SEQ: size +1 , NAME: '홍길동'+size , RDO: 'M'  , SELECTV: 'A'  , ENTERING_DATE: '2024-06-09 12:00', ROWTYPE:'I'});
       console.log(this.empList);
     } ,
 
      selectEmp(emp) {
-      this.gubun = emp.EMP_NM;
-      this.keyword = emp.KEYWORD;
-      this.title = emp.TITLE;
-      this.datea = emp.DATEA;
+      this.gubun = emp.NAME;
+      this.keyword = emp.RDO;
+      this.title = emp.SELECTV;
+      this.datea = emp.ENTERING_DATE;
     },
 
      fnNew() {
@@ -229,6 +240,10 @@ h2 {
   position: absolute; 
   right: 0px;  
   top: 54px;
+}
+
+.trtr {
+  height: 30px; /* 원하는 높이 설정 */
 }
 
 
