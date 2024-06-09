@@ -18,7 +18,7 @@
     <div id="empButton">
     
     <input name="btnSave"  type="BUTTON" value="저장" @click="fnSave">
-     <input name="btnAdd"  type="BUTTON" value="추가" @click="fnAdd">
+     <input name="btnAdd"  type="BUTTON" value="간단추가" @click="fnAdd">
      <input name="btnNew"  type="BUTTON" value="신규등록" @click="fnNew">     
     
      </div>
@@ -31,11 +31,12 @@
                         <th width="5%" height="20">순번</th>
                         <th width="10%">사원명</th>
                         <th width="20%">성별</th>
-                        <th width="20%">직급</th>
+                        <th width="15%">직급</th>
                      
                         <th width="15%" class="">입사일자</th>
                         <th width="5%" class="">나이</th>
-                        <th width="10%" class="border_last">로우타임</th>
+                        <th width="5%" class="">수정</th>
+                        <th width="10%" class="border_last">로우타임</th>                        
                       </tr>
                              <tr class="trtr" v-for="(emp, index) in empList" :key="emp.SEQ" @click="selectEmp(emp)">
                           <td height="20" class="seq">
@@ -60,9 +61,13 @@
                            <td class="">
                             {{emp.OLD}}
                           </td>
+                           <td class="">
+                           <input name="btnEdit"  type="BUTTON" v-bind:value="emp.CRUD_TYPE" @click="fnEdit(emp.SEQ, emp.ROWTYPE)">     
+                          </td>
                            <td class="border_last">
                             {{emp.ROWTYPE}}
                           </td>
+
                         </tr>
                     </table>
   </div>
@@ -78,6 +83,7 @@ export default {
   data() {
     return {
       empNm: "",   // 검색어
+      SEQ:"",
 
       list_m: [{a: 'aa', b: 'bbb'}, {a: 'aa', b: 'bbb'}],
       NAME: "",
@@ -176,7 +182,7 @@ export default {
      fnAdd() {
         var size = this.empList.length;
 
-      this.empList.push({  ENTERING_DATE: '2024-06-09' , JOINING_TIME: '12:00', SELECTV: 'A', OLD:'0' , ROWTYPE:'I' ,  RDO: 'M' ,  SEQ: size +1 , NAME: '홍길동'+size });
+      this.empList.push({  ENTERING_DATE: '2024-06-09' , JOINING_TIME: '12:00', SELECTV: 'A', OLD:'0' , ROWTYPE:'I' ,  RDO: 'M' ,  SEQ: size +1 , NAME: '홍길동'+size , CRUD_TYPE:'신규'});
       debugger;
       console.log(this.empList);
     } ,
@@ -193,6 +199,21 @@ export default {
        // window.location.href = '/EmpNew';
        this.$router.push('/EmpNew');
      } ,
+
+     fnEdit(SEQ, ROWTYPE) {
+    
+        if (ROWTYPE == "I") {
+          return ;
+        }
+     
+
+        this.$router.push({
+            path: '/EmpNew',
+            query: { SEQ: SEQ } ,
+          
+          });
+
+     }, 
 
   },
    

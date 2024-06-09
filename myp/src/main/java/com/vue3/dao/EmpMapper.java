@@ -10,6 +10,8 @@ public interface EmpMapper {
 
 	public List<Map<String, Object>> selectUserList(Map<String, Object> map);
 	
+	public Map<String, Object> selectEmpSchDtl(Map<String, Object> map);
+	
 	public int insertEmp(Map<String, Object> map);
 	
 

@@ -20,6 +20,14 @@ public class EmpServiceImpl  {
        return empMapper.selectUserList(map);
    }
    
+   
+   
+   public Map<String, Object> selectEmpSchDtl(Map<String, Object> map) throws Exception {
+	   
+       return empMapper.selectEmpSchDtl(map);
+   }
+   
+   
  public int insertEmp(Map<String, Object> map) throws Exception {
 	   
        return empMapper.insertEmp(map);

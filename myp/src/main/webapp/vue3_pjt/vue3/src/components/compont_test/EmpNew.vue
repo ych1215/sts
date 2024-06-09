@@ -43,11 +43,12 @@
 
       <div id="qqq2">나이</div>
       <div>
-        <input type="number" name="name" min="2" max="20" step="1" value=""  v-model="old" /> {{old}}
+        <input type="number" name="name" min="2" max="20" step="1" value=""  v-model="old" />
         
       </div>
     </div>
   </div>
+  SEQ {{seq}}
   이름 {{name}}
   성별 {{rdo}}
   직급 {{selectv}}
@@ -67,6 +68,8 @@ import axios from "axios";
 export default {
   data() {
     return {
+
+      seq:0,
        name: "",
        chks: [],
        rdo: "",
@@ -81,7 +84,54 @@ export default {
     };
   },
 
+     mounted() {
+
+   
+    const SEQ = this.$route.query.SEQ;
+    console.log(SEQ); // 받은 파라미터 출력
+    
+    this.fnEmpSch(SEQ);
+    
+   
+  } ,
+
   methods: {
+
+        fnEmpSch(SEQ) {
+
+         // alert(SEQ);
+
+        if (SEQ == '' || SEQ ==  undefined) {
+          return ;
+        }
+
+
+      var emp_list = this;
+
+      // 데이터를 JSON 문자열로 변환하고 URL 인코딩
+      let params = {
+        SEQ: SEQ,
+      };
+
+      axios
+        .post("http://localhost:8089/empSchDtl", { params: params })
+        .then(function (response) {
+          console.log(response.data);
+
+          
+           emp_list.seq = response.data.SEQ;
+          emp_list.name = response.data.NAME;
+          emp_list.rdo = response.data.RDO;
+          emp_list.selectv = response.data.SELECTV;
+          emp_list.old = response.data.OLD;
+           emp_list.data1 = response.data.ENTERING_DATE;
+            emp_list.data2 = response.data.JOINING_TIME;
+         
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
 
 
       fnCk(event) {
@@ -90,6 +140,14 @@ export default {
               return false;
 
           }
+
+            if (this.rdo == "" ) {
+              alert("성별 필수 입력 항목 ");
+              return false;
+
+          }
+
+
           return true;
       },
 
@@ -101,9 +159,11 @@ export default {
 
         var emp_info = this;
 
-        // JSON 형식의 데이터를 요청 본문에 포함
+        // JSON 형식의 데이터를 요청 본문에 포함     
         let data = {
 
+           
+             seq: emp_info.seq, 
             name: emp_info.name,
             chks: emp_info.chks,
             rdo: emp_info.rdo,

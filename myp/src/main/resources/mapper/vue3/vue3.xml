@@ -3,8 +3,18 @@
 
 <mapper namespace="com.vue3.dao.EmpMapper">
 
-
 	
+	<select  id="selectEmpSchDtl" parameterType="Map" resultType="Map">
+		
+		SELECT SEQ , NAME , RDO , OLD
+		  , SELECTV ,
+		  ENTERING_DATE ,
+		  JOINING_TIME
+		 FROM VUE_EMP_BORD_LIST
+		WHERE SEQ = #{SEQ}
+			 
+		 
+	</select>
 
 
 	<select  id="selectUserList" parameterType="Map" resultType="Map">
@@ -16,7 +26,8 @@
 		         WHEN SELECTV = 'D' THEN '대표이사'
 		     ELSE NULL END AS SELECTV
 		  
-		 , ENTERING_DATE  || ' ' || JOINING_TIME AS ENTERING_DATE  
+		 , ENTERING_DATE  || ' ' || JOINING_TIME AS ENTERING_DATE
+		 , '수정' CRUD_TYPE  
 		  , 'R' AS ROWTYPE
 		 FROM VUE_EMP_BORD_LIST
 		WHERE 1=1
@@ -31,27 +42,39 @@
 	
 	
 			<update id="insertEmp" parameterType="Map">
-
-		INSERT INTO VUE_EMP_BORD_LIST
-		(
-	     SEQ , ROWTYPE , NAME , RDO ,  SELECTV ,OLD , ENTERING_DATE , JOINING_TIME
-		)
-		VALUES
-		(
-		(SELECT NVL(MAX(SEQ) + 1 , 1) FROM VUE_EMP_BORD_LIST ),
-		#{ROWTYPE} ,
-		
-		#{NAME} ,
-		#{RDO} ,
-		#{SELECTV} ,
-		#{OLD} , 
-		#{ENTERING_DATE} , 
-		#{JOINING_TIME}
-		  
-		
-		
-		
-		)
+  MERGE INTO VUE_EMP_BORD_LIST A
+        USING (
+                 
+                SELECT #{SEQ}     AS SEQ
+				     , #{ROWTYPE} AS ROWTYPE
+					 , #{NAME}    AS NAME
+					 , #{RDO}     AS RDO
+					 , #{SELECTV} AS SELECTV
+					 , #{OLD}          AS OLD
+					 , #{ENTERING_DATE} AS ENTERING_DATE
+					 , #{JOINING_TIME}	AS JOINING_TIME			       
+                  FROM dual               
+            
+              ) B
+           ON ( A.SEQ = B.SEQ)
+           WHEN MATCHED THEN
+           
+         UPDATE SET A.NAME          = B.NAME 
+                  , A.RDO           = B.RDO
+                  , A.SELECTV       = B.SELECTV
+                  , A.OLD           = B.OLD
+                  , A.ENTERING_DATE = B.ENTERING_DATE
+                  , A.JOINING_TIME  = B.JOINING_TIME
+             
+           WHEN NOT MATCHED THEN
+           
+         INSERT ( 
+                     A.SEQ , A.ROWTYPE , A.NAME , A.RDO ,  A.SELECTV , A.OLD , A.ENTERING_DATE , A.JOINING_TIME
+                )
+           VALUES
+                ( 
+				   (SELECT NVL(MAX(SEQ) + 1 , 1) FROM VUE_EMP_BORD_LIST ) , B.ROWTYPE , B.NAME , B.RDO ,  B.SELECTV , B.OLD , B.ENTERING_DATE , B.JOINING_TIME
+              )   
 
 	</update>
 	

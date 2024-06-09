@@ -26,6 +26,25 @@ public class EmpController {
 	
 	@Resource
 	EmpServiceImpl empService;
+	
+	
+	
+	 @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/empSchDtl", method = RequestMethod.POST)
+    public Map empSchDtl(@RequestBody Map<String, Object> requestBody) throws Exception {
+    	
+    	HashMap<String, Object> parm = new HashMap<>();
+    	
+
+        // 요청 본문에서 데이터 추출
+      
+        Map<String, Object> empOjb = (Map<String, Object>) requestBody.get("params");
+        String seq = (String) empOjb.get("SEQ");
+        parm.put("SEQ", seq);
+        
+        Map<String, Object> outMap = empService.selectEmpSchDtl(parm);
+        return outMap;
+    }
 
 
     @CrossOrigin(origins = "*")
@@ -134,6 +153,11 @@ public class EmpController {
 	    public void empNewSave(@RequestBody Map<String, Object> requestBody) throws Exception {
 	    	
 
+	    	  // 요청 본문에서 데이터 추출
+	    	Integer seq = (Integer) requestBody.get("seq");
+	        System.out.println("seq: " + seq);
+	        
+	        
 	        // 요청 본문에서 데이터 추출
 	        String name = (String) requestBody.get("name");
 	        System.out.println("name: " + name);
@@ -174,10 +198,7 @@ public class EmpController {
 	        
 	        HashMap<String, Object> parm = new HashMap<>();
 			
-		 	parm.put("TITLE", "");
-			parm.put("EMP_NM", "");
-			parm.put("KEYWORD", "");
-			parm.put("DATEA", "");
+	        parm.put("SEQ",seq);
 			parm.put("ROWTYPE", 'R');
 	        
 	        parm.put("NAME", name);
