@@ -102,8 +102,12 @@ export default {
    
     const yourParameter = this.$route.query.pram1;
     console.log(yourParameter); // 받은 파라미터 출력
-   // alert(yourParameter);
-    this.fnEmpSch();
+    //alert(yourParameter);
+
+    if (yourParameter != undefined) {
+       this.fnEmpSch();
+    }
+   
     
    
   } ,
