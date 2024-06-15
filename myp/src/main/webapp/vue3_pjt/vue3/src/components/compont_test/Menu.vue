@@ -9,7 +9,7 @@
       <li><router-link to="/axios">axios 예제</router-link></li>
       <li><router-link to="/PropsParent">props , emits 예제</router-link></li>
       <li><router-link to="/CompositionApi">Composition Api 예제</router-link></li>
-      <li><router-link to="/MittTestMain">mitt , 프롭스대용</router-link></li>
+      <li><router-link to="/MittTestMain">[mitt, 프롭스대용] [js파일 임포트해서 함수,변수사용하기]</router-link></li>
       <li><router-link to="/EmpMgmt">사원관리</router-link></li>
       
     </div>
