@@ -8,9 +8,8 @@
       <li><router-link to="/EventSample">이벤트, bind 예제</router-link></li>
       <li><router-link to="/axios">axios 예제</router-link></li>
       <li><router-link to="/PropsParent">props , emits 예제</router-link></li>
-      <li>
-        <router-link to="/CompositionApi">Composition Api 예제</router-link>
-      </li>
+      <li><router-link to="/CompositionApi">Composition Api 예제</router-link></li>
+      <li><router-link to="/MittTestMain">mitt , 프롭스대용</router-link></li>
       <li><router-link to="/EmpMgmt">사원관리</router-link></li>
       
     </div>

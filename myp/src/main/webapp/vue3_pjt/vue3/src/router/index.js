@@ -12,7 +12,7 @@ import EmpNew from '../components/compont_test/EmpNew.vue'
 import CompositionApi from '../components/compont_test/CompositionApi.vue'
 import Menu from '../components/compont_test/Menu.vue'
 
-
+import MittTestMain from '../components/compont_test/MittTestMain.vue'
 
 
 const routes = [
@@ -70,6 +70,13 @@ const routes = [
     component: EmpNew
   }
   ,
+  {
+    path: '/MittTestMain',
+    name: 'MittTestMain',
+    component: MittTestMain
+  }
+  ,
+
 ]
 
 const router = createRouter({
