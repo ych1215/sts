@@ -13,6 +13,7 @@ import CompositionApi from '../components/compont_test/CompositionApi.vue'
 import Menu from '../components/compont_test/Menu.vue'
 
 import MittTestMain from '../components/compont_test/MittTestMain.vue'
+import SelectCrud from '../components/compont_test/SelectCrud.vue'
 
 
 const routes = [
@@ -76,6 +77,13 @@ const routes = [
     component: MittTestMain
   }
   ,
+  {
+  path: '/SelectCrud',
+  name: 'SelectCrud',
+  component: SelectCrud
+  }
+,
+
 
 ]
 
