@@ -135,9 +135,11 @@ public class EmpController {
 	    	  
 	    	 for (int i=0; i<empList.size(); i++) {
 	    		 map = empList.get(i);
-	    		 if ("I".equals((String)map.get("ROWTYPE"))) {
+	    		 if ("I".equals((String)map.get("ROWTYPE")) || "U".equals((String)map.get("ROWTYPE"))) {
+	    			 System.out.println(i + "값");
+	    			 System.out.println(map.toString() + "값");
 	    			 empService.insertEmp(map);
-	    		 }
+	    		 } 
 	    	 }
 	    }
 	 

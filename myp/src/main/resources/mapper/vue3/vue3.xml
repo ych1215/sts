@@ -24,9 +24,12 @@
 		         WHEN SELECTV = 'B' THEN '과장'
 		         WHEN SELECTV = 'C' THEN '부장'
 		         WHEN SELECTV = 'D' THEN '대표이사'
-		     ELSE NULL END AS SELECTV
+		     ELSE NULL END AS SELECTV_NM
+		     
+		  , SELECTV    AS SELECTV
 		  
-		 , ENTERING_DATE  || ' ' || JOINING_TIME AS ENTERING_DATE
+		 , ENTERING_DATE AS ENTERING_DATE
+		 , JOINING_TIME AS JOINING_TIME
 		 , '수정' CRUD_TYPE  
 		  , 'R' AS ROWTYPE
 		 FROM VUE_EMP_BORD_LIST
@@ -45,19 +48,20 @@
   MERGE INTO VUE_EMP_BORD_LIST A
         USING (
                  
-                SELECT #{SEQ}     AS SEQ
-				     , #{ROWTYPE} AS ROWTYPE
-					 , #{NAME}    AS NAME
-					 , #{RDO}     AS RDO
-					 , #{SELECTV} AS SELECTV
-					 , #{OLD}          AS OLD
-					 , #{ENTERING_DATE} AS ENTERING_DATE
-					 , #{JOINING_TIME}	AS JOINING_TIME			       
-                  FROM dual               
+                 SELECT #{SEQ  }     AS SEQ
+				     , #{ROWTYPE } AS ROWTYPE
+					 , #{NAME }    AS NAME
+					 , #{RDO }     AS RDO
+					 , #{SELECTV } AS SELECTV
+					 , #{OLD }          AS OLD
+					 , #{ENTERING_DATE } AS ENTERING_DATE
+					 , #{JOINING_TIME }	AS JOINING_TIME		
+                  FROM dual                      
             
               ) B
            ON ( A.SEQ = B.SEQ)
-           WHEN MATCHED THEN
+        
+        WHEN MATCHED THEN
            
          UPDATE SET A.NAME          = B.NAME 
                   , A.RDO           = B.RDO

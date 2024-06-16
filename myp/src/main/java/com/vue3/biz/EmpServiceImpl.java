@@ -10,31 +10,24 @@ import com.test.dao.TestMapper;
 import com.vue3.dao.EmpMapper;
 
 @Service
-public class EmpServiceImpl  {
+public class EmpServiceImpl {
 
-   @Autowired
-   EmpMapper empMapper;
+	@Autowired
+	EmpMapper empMapper;
 
-   public List<Map<String, Object>> selectUserList(Map<String, Object> map) throws Exception {
-	   
-       return empMapper.selectUserList(map);
-   }
-   
-   
-   
-   public Map<String, Object> selectEmpSchDtl(Map<String, Object> map) throws Exception {
-	   
-       return empMapper.selectEmpSchDtl(map);
-   }
-   
-   
- public int insertEmp(Map<String, Object> map) throws Exception {
-	   
-       return empMapper.insertEmp(map);
-   }
-   
-   
-   
-   
+	public List<Map<String, Object>> selectUserList(Map<String, Object> map) throws Exception {
+
+		return empMapper.selectUserList(map);
+	}
+
+	public Map<String, Object> selectEmpSchDtl(Map<String, Object> map) throws Exception {
+
+		return empMapper.selectEmpSchDtl(map);
+	}
+
+	public int insertEmp(Map<String, Object> map) throws Exception {
+
+		return empMapper.insertEmp(map);
+	}
+
 }
-

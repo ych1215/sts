@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>사원관리</h2>
+    <h2>사원관리</h2>  {{filteredNames}}
 
   <div class="empSch">
   사원명 <input name="empSch" v-model="empNm" type="text" value="" >     
@@ -12,7 +12,13 @@
   <div class="empSch">
   사원명<input name="empSch" v-model="NAME" type="text" value="" >  
   성별 <input name="empSch" v-model="RDO" type="text" value="" >   <br>
-  직급<input name="empSch" v-model="SELECTV" type="text" value="" >  
+  직급
+  <select v-model="SELECTV">
+          <option value="A">대리</option>
+          <option value="B">과장</option>
+          <option value="C">부장</option>
+          <option value="D">대표이사</option>
+        </select>
   입사일자 <input name="empSch" v-model="ENTERING_DATE" type="text" value="" >   <br> <br>
     
     <div id="empButton">
@@ -53,7 +59,7 @@
                          {{emp.RDO}}
                           </td>
                           <td style="text-align: left;">
-                            {{emp.SELECTV}}
+                            {{emp.SELECTV_NM}}
                           </td>
                           <td class="">
                             {{emp.ENTERING_DATE}}
@@ -89,10 +95,12 @@ export default {
       NAME: "",
       RDO: "",
       SELECTV: "",
-      SEX:"",
+
+    
       OLD :  0,
+      ENTERING_DATE :"",
       empOjb: {a: 'aa', b: 'bbb'},
-      empList : [],
+      empList : [],     
 
     };
   },
@@ -157,7 +165,6 @@ export default {
           alert("에러메시지::"+ error);
         });
     },
-    
 
     fnSave() {
      
@@ -192,11 +199,15 @@ export default {
     } ,
 
      selectEmp(emp) {
+
+      this.SEQ =  emp.SEQ;
       this.NAME = emp.NAME;
-       this.SEX = emp.SEX;
+       this.RDO = emp.RDO;
       this.RDO = emp.RDO;
       this.SELECTV = emp.SELECTV;
       this.ENTERING_DATE = emp.ENTERING_DATE;
+
+      console.log("seq::"+this.SEQ);
     },
 
      fnNew() {
@@ -219,6 +230,72 @@ export default {
 
      }, 
 
+  },
+
+   computed: { // 템플릿이 오르되면 한번은 무조건 호출되며, filteredNames 함수에서 사용하는 변수가 변경되면 함수가 자동 호출 된다.
+    
+    filteredNames() { 
+      //alert("computed::"+this.RDO);
+      return this.RDO;
+      
+    }
+  },
+  
+  watch: { // 변수 값이 변경될때 호출 .
+
+   
+    NAME(newVal, oldVal) {
+
+      if( this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].NAME !=  newVal) {
+        this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].ROWTYPE = "U";
+      }
+
+      
+      this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].NAME = newVal;      
+
+    } ,
+
+    RDO(newVal, oldVal) {
+
+      if( this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].RDO !=  newVal) {
+        this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].ROWTYPE = "U";
+      }
+
+      this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].RDO = newVal;
+    } ,
+
+    SELECTV(newVal, oldVal) {
+
+      if( this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].SELECTV !=  newVal) {
+
+        this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].ROWTYPE = "U";
+
+        var deptNm = "";
+        if (newVal == "A") {
+          deptNm = "대리";
+        } else if (newVal == "B") {
+          deptNm = "과장";
+        } else if (newVal == "C") {
+          deptNm = "부장";
+        } else if (newVal == "D") {
+          deptNm = "대표이사";
+        }
+
+        this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].SELECTV_NM =         deptNm ;
+
+      }
+      
+      this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].SELECTV = newVal;
+
+    } ,
+    ENTERING_DATE(newVal, oldVal) {
+
+      if( this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].ENTERING_DATE !=  newVal) {
+        this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].ROWTYPE = "U";
+      }
+      this.empList[this.empList.findIndex(item => item.SEQ === this.SEQ)].ENTERING_DATE = newVal;
+    } ,
+    
   },
    
 
