@@ -24,7 +24,7 @@ public class BoderController {
 	BoderServiceImpl boderServiceImpl;
 
 	/**
-	 * 썸머노트 조회
+	 * 썸머노트 조회  
 	 * 
 	 * @param request
 	 * @return
