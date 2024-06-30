@@ -220,7 +220,7 @@ export default {
 
   margin: 3px;
   text-align: left;
-  1border: 1px solid #d61198; 
+  border: 1px solid #d61198; 
 }
 
 /*
